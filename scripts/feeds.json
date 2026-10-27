@@ -1,0 +1,88 @@
+{
+  "_설명": "아침 뉴스 출처 목록. 출처를 더하거나 빼려면 feeds 배열에 한 줄씩 고치면 됩니다. query가 있는 항목은 구글 뉴스 검색어, lang은 ko(한국어)·en(영어)·ja(일본어). hours는 몇 시간 안의 기사까지 볼지, limits는 언어별로 몇 개까지 보여줄지입니다.",
+  "prefer": ["연합뉴스", "뉴시스", "BBC 코리아", "BBC News", "NHK", "Japan Times"],
+  "sections": [
+    {
+      "id": "top",
+      "title": "오늘의 주요 뉴스",
+      "hours": 30,
+      "limits": {"ko": 12},
+      "feeds": [
+        {"name": "연합뉴스", "lang": "ko", "url": "https://www.yna.co.kr/rss/news.xml"},
+        {"name": "뉴시스", "lang": "ko", "url": "https://newsis.com/RSS/sokbo.xml"},
+        {"name": "SBS", "lang": "ko", "url": "https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&plink=RSSREADER"},
+        {"name": "SBS", "lang": "ko", "url": "https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=02&plink=RSSREADER"},
+        {"name": "SBS", "lang": "ko", "url": "https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=03&plink=RSSREADER"},
+        {"name": "JTBC", "lang": "ko", "url": "https://news-ex.jtbc.co.kr/v1/get/rss/newsflesh"},
+        {"name": "한겨레", "lang": "ko", "url": "https://www.hani.co.kr/rss/"},
+        {"name": "경향신문", "lang": "ko", "url": "https://www.khan.co.kr/rss/rssdata/total_news.xml"},
+        {"name": "오마이뉴스", "lang": "ko", "url": "https://rss.ohmynews.com/rss/ohmynews.xml"},
+        {"name": "조선일보", "lang": "ko", "url": "https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml"},
+        {"name": "동아일보", "lang": "ko", "url": "https://rss.donga.com/total.xml"},
+        {"name": "국민일보", "lang": "ko", "url": "https://www.kmib.co.kr/rss/data/kmibRssAll.xml"},
+        {"name": "세계일보", "lang": "ko", "url": "https://www.segye.com/Articles/RSSList/segye_recent.xml"},
+        {"name": "매일경제", "lang": "ko", "url": "https://www.mk.co.kr/rss/30000001/"},
+        {"name": "구글 뉴스", "lang": "ko", "kind": "gnews", "url": "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko"}
+      ]
+    },
+    {
+      "id": "world",
+      "title": "세계",
+      "hours": 30,
+      "limits": {"ko": 8, "en": 6},
+      "feeds": [
+        {"name": "연합뉴스", "lang": "ko", "url": "https://www.yna.co.kr/rss/international.xml"},
+        {"name": "SBS", "lang": "ko", "url": "https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=07&plink=RSSREADER"},
+        {"name": "BBC 코리아", "lang": "ko", "url": "https://feeds.bbci.co.uk/korean/rss.xml"},
+        {"name": "구글 뉴스", "lang": "ko", "kind": "gnews", "url": "https://news.google.com/rss/headlines/section/topic/WORLD?hl=ko&gl=KR&ceid=KR:ko"},
+        {"name": "BBC News", "lang": "en", "url": "https://feeds.bbci.co.uk/news/world/rss.xml"},
+        {"name": "The Guardian", "lang": "en", "url": "https://www.theguardian.com/world/rss"},
+        {"name": "Al Jazeera", "lang": "en", "url": "https://www.aljazeera.com/xml/rss/all.xml"},
+        {"name": "New York Times", "lang": "en", "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"},
+        {"name": "NPR", "lang": "en", "url": "https://feeds.npr.org/1004/rss.xml"},
+        {"name": "DW", "lang": "en", "url": "https://rss.dw.com/rdf/rss-en-all"}
+      ]
+    },
+    {
+      "id": "japan",
+      "title": "일본",
+      "hours": 30,
+      "limits": {"ko": 6, "ja": 6, "en": 4},
+      "feeds": [
+        {"name": "연합뉴스", "lang": "ko", "url": "https://www.yna.co.kr/rss/news.xml", "match": "일본|日|도쿄|오사카|교토|후쿠오카|홋카이도|오키나와|엔화|엔저|자민당|한일"},
+        {"name": "뉴시스", "lang": "ko", "url": "https://newsis.com/RSS/sokbo.xml", "match": "일본|日|도쿄|오사카|교토|후쿠오카|홋카이도|오키나와|엔화|엔저|자민당|한일"},
+        {"name": "BBC 코리아", "lang": "ko", "url": "https://feeds.bbci.co.uk/korean/rss.xml", "match": "일본|日|도쿄|오사카|교토|엔화|자민당|한일"},
+        {"name": "구글 뉴스", "lang": "ko", "kind": "gnews", "url": "https://news.google.com/rss/headlines/section/topic/WORLD?hl=ko&gl=KR&ceid=KR:ko", "match": "일본|日|도쿄|오사카|교토|엔화|자민당|한일"},
+        {"name": "Google ニュース", "lang": "ja", "kind": "gnews", "url": "https://news.google.com/rss?hl=ja&gl=JP&ceid=JP:ja"},
+        {"name": "Japan Times", "lang": "en", "url": "https://www.japantimes.co.jp/feed/"},
+        {"name": "nippon.com", "lang": "en", "url": "https://www.nippon.com/en/feed/"}
+      ]
+    },
+    {
+      "id": "mind",
+      "title": "과학·심리·철학",
+      "hours": 168,
+      "limits": {"ko": 6, "en": 6},
+      "feeds": [
+        {"name": "구글 뉴스", "lang": "ko", "kind": "gnews", "url": "https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=ko&gl=KR&ceid=KR:ko"},
+        {"name": "ScienceDaily", "lang": "en", "url": "https://www.sciencedaily.com/rss/mind_brain/psychology.xml"},
+        {"name": "Aeon", "lang": "en", "url": "https://aeon.co/feed.rss"},
+        {"name": "Psyche", "lang": "en", "url": "https://psyche.co/feed"},
+        {"name": "Daily Nous", "lang": "en", "url": "https://dailynous.com/feed/"}
+      ]
+    },
+    {
+      "id": "culture",
+      "title": "문화·사진",
+      "hours": 72,
+      "limits": {"ko": 6, "en": 5},
+      "feeds": [
+        {"name": "연합뉴스", "lang": "ko", "url": "https://www.yna.co.kr/rss/culture.xml", "exclude": "날씨|한파|특보|기온|추위|미세먼지|황사|폭염|폭설|강추위"},
+        {"name": "SBS", "lang": "ko", "url": "https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=08&plink=RSSREADER", "exclude": "날씨|클로징|한파|특보|기온|추위|미세먼지|황사|폭염|폭설|강추위"},
+        {"name": "PetaPixel", "lang": "en", "url": "https://petapixel.com/feed/"},
+        {"name": "DPReview", "lang": "en", "url": "https://www.dpreview.com/feeds/news.xml"},
+        {"name": "Fstoppers", "lang": "en", "url": "https://fstoppers.com/rss.xml"}
+      ]
+    }
+  ]
+}

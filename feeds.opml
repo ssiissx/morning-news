@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0"><head><title>아침 뉴스 출처</title></head><body>
+<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/news.xml"/>
+<outline type="rss" text="뉴시스" title="뉴시스" xmlUrl="https://newsis.com/RSS/sokbo.xml"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=02&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=03&amp;plink=RSSREADER"/>
+<outline type="rss" text="JTBC" title="JTBC" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/newsflesh"/>
+<outline type="rss" text="한겨레" title="한겨레" xmlUrl="https://www.hani.co.kr/rss/"/>
+<outline type="rss" text="경향신문" title="경향신문" xmlUrl="https://www.khan.co.kr/rss/rssdata/total_news.xml"/>
+<outline type="rss" text="오마이뉴스" title="오마이뉴스" xmlUrl="https://rss.ohmynews.com/rss/ohmynews.xml"/>
+<outline type="rss" text="조선일보" title="조선일보" xmlUrl="https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml"/>
+<outline type="rss" text="동아일보" title="동아일보" xmlUrl="https://rss.donga.com/total.xml"/>
+<outline type="rss" text="국민일보" title="국민일보" xmlUrl="https://www.kmib.co.kr/rss/data/kmibRssAll.xml"/>
+<outline type="rss" text="세계일보" title="세계일보" xmlUrl="https://www.segye.com/Articles/RSSList/segye_recent.xml"/>
+<outline type="rss" text="매일경제" title="매일경제" xmlUrl="https://www.mk.co.kr/rss/30000001/"/>
+<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/international.xml"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=07&amp;plink=RSSREADER"/>
+<outline type="rss" text="BBC 코리아" title="BBC 코리아" xmlUrl="https://feeds.bbci.co.uk/korean/rss.xml"/>
+<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss/headlines/section/topic/WORLD?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="BBC News" title="BBC News" xmlUrl="https://feeds.bbci.co.uk/news/world/rss.xml"/>
+<outline type="rss" text="The Guardian" title="The Guardian" xmlUrl="https://www.theguardian.com/world/rss"/>
+<outline type="rss" text="Al Jazeera" title="Al Jazeera" xmlUrl="https://www.aljazeera.com/xml/rss/all.xml"/>
+<outline type="rss" text="New York Times" title="New York Times" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/World.xml"/>
+<outline type="rss" text="NPR" title="NPR" xmlUrl="https://feeds.npr.org/1004/rss.xml"/>
+<outline type="rss" text="DW" title="DW" xmlUrl="https://rss.dw.com/rdf/rss-en-all"/>
+<outline type="rss" text="Google ニュース" title="Google ニュース" xmlUrl="https://news.google.com/rss?hl=ja&amp;gl=JP&amp;ceid=JP:ja"/>
+<outline type="rss" text="Japan Times" title="Japan Times" xmlUrl="https://www.japantimes.co.jp/feed/"/>
+<outline type="rss" text="nippon.com" title="nippon.com" xmlUrl="https://www.nippon.com/en/feed/"/>
+<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="ScienceDaily" title="ScienceDaily" xmlUrl="https://www.sciencedaily.com/rss/mind_brain/psychology.xml"/>
+<outline type="rss" text="Aeon" title="Aeon" xmlUrl="https://aeon.co/feed.rss"/>
+<outline type="rss" text="Psyche" title="Psyche" xmlUrl="https://psyche.co/feed"/>
+<outline type="rss" text="Daily Nous" title="Daily Nous" xmlUrl="https://dailynous.com/feed/"/>
+<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/culture.xml"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=08&amp;plink=RSSREADER"/>
+<outline type="rss" text="PetaPixel" title="PetaPixel" xmlUrl="https://petapixel.com/feed/"/>
+<outline type="rss" text="DPReview" title="DPReview" xmlUrl="https://www.dpreview.com/feeds/news.xml"/>
+<outline type="rss" text="Fstoppers" title="Fstoppers" xmlUrl="https://fstoppers.com/rss.xml"/>
+</body></opml>
