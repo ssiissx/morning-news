@@ -369,6 +369,12 @@ def render_page(now, sections_html, nav, stats, sources_line, days, current, pre
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F4F6F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E131A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-title" content="아침 뉴스">
+<link rel="manifest" href="{home}manifest.webmanifest">
+<link rel="icon" type="image/png" href="{home}icon-192.png">
+<link rel="apple-touch-icon" href="{home}icon-180.png">
 <title>아침 뉴스 · {now.month}월 {now.day}일</title>
 <style>{CSS}</style>
 </head>
