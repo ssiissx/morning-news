@@ -1,0 +1,47 @@
+name: 아침 뉴스
+
+on:
+  schedule:
+    - cron: "0 22 * * *"   # 매일 오전 7시(한국 시간). GitHub 사정으로 몇십 분 늦게 돌 수 있다.
+  workflow_dispatch:       # Actions 탭에서 'Run workflow'를 누르면 바로 실행
+  push:
+    branches: [main]
+    paths-ignore: ["index.html", "archive/**", "feeds.opml"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 뉴스 모으기
+        run: python3 scripts/build_news.py
+
+      # 매일 커밋이 남아야 GitHub가 예약 실행을 멈추지 않는다(60일 무활동 시 정지).
+      - name: 기록 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html archive feeds.opml
+          git diff --cached --quiet || git commit -m "아침 뉴스 $(TZ=Asia/Seoul date +%F)"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || (git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}")
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
