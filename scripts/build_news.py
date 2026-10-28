@@ -430,10 +430,18 @@ padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
 header .day{margin:0;color:var(--soft);font-size:.9rem;font-weight:600}
 h1{margin:4px 0 6px;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em}
 header .stat{margin:0;color:var(--soft);font-size:.85rem}
-nav.jump{display:flex;gap:6px;overflow-x:auto;margin:18px 0 6px;padding-bottom:4px;scrollbar-width:none}
+nav.jump{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+margin:14px -16px 0;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.jump::-webkit-scrollbar{display:none}
 nav.jump a{flex:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
 font-size:.875rem;text-decoration:none;color:var(--ink)}
-section{margin-top:34px}
+nav.jump a[aria-current]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+section{margin-top:34px;scroll-margin-top:64px}
+.tabs section{display:none;margin-top:22px}
+.tabs section.on{display:block}
+.next{margin:20px 0 0;text-align:right}
+.next a{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+color:var(--accent);font-size:.875rem;font-weight:600;text-decoration:none}
 h2{margin:0 0 4px;font-size:1.35rem;letter-spacing:-.01em}
 .story{padding:14px 0;border-bottom:1px solid var(--line)}
 .story:last-of-type{border-bottom:0}
@@ -455,6 +463,38 @@ footer h2{font-size:1rem;color:var(--ink)}
 .days a[aria-current]{border-color:var(--accent);color:var(--accent);font-weight:600}
 footer p{margin:0}
 .bad{color:var(--soft);text-decoration:line-through}
+"""
+
+
+# 섹션을 탭처럼 하나씩 보여 준다. 위쪽 버튼 줄은 화면 맨 위에 붙어 있어서, 스포츠를 다 읽고도
+# 올라가지 않고 다른 섹션으로 갈 수 있다. 주소 끝(#politics)에 섹션이 남아 뒤로 가기도 된다.
+# 스크립트가 돌지 않는 환경에서는 예전처럼 모든 섹션이 이어서 보인다.
+TABS_JS = """
+(function(){
+  var links = document.querySelectorAll('nav.jump a');
+  var secs = document.querySelectorAll('.wrap > section');
+  var head = document.querySelector('.wrap > header');
+  if (!links.length || !secs.length) return;
+  document.body.classList.add('tabs');
+  function show(id, jump){
+    var hit = null;
+    for (var i = 0; i < secs.length; i++) if (secs[i].id === id) hit = secs[i];
+    if (!hit) { hit = secs[0]; jump = false; }
+    for (var k = 0; k < secs.length; k++) secs[k].classList.toggle('on', secs[k] === hit);
+    for (var j = 0; j < links.length; j++){
+      var a = links[j];
+      if (a.getAttribute('href') === '#' + hit.id){
+        a.setAttribute('aria-current', 'page');
+        a.parentNode.scrollLeft = a.offsetLeft - (a.parentNode.clientWidth - a.offsetWidth) / 2;
+      } else a.removeAttribute('aria-current');
+    }
+    // 아래로 내려가 있었으면 새 섹션의 첫 기사가 보이도록 버튼 줄 바로 아래로 올린다
+    var top = head.getBoundingClientRect().bottom + window.pageYOffset;
+    if (jump || window.pageYOffset > top) window.scrollTo(0, Math.min(window.pageYOffset, top));
+  }
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1), true); });
+  show(location.hash.slice(1), false);
+})();
 """
 
 
@@ -499,6 +539,7 @@ def render_page(now, sections_html, nav, stats, sources_line, days, current, pre
 <p>RSS 앱으로도 보려면 <a href="{home}feeds.opml">출처 목록(OPML)</a>을 가져가세요.</p>
 </footer>
 </div>
+<script>{TABS_JS}</script>
 </body>
 </html>
 """
@@ -589,8 +630,7 @@ def main():
     clusters.sort(key=lambda c: (len(c["outlets"]), c["latest"] or floor), reverse=True)
 
     # 섹션은 feeds.json 순서대로 채운다. 주요 뉴스(맨 앞)에 나온 사건은 아래 섹션에서 다시 나오지 않는다.
-    used = set()
-    sections_html, nav = [], []
+    used, filled = set(), []
     for sec in config["sections"]:
         if sec["id"] == "top":
             allowed = set(sec.get("from", order))
@@ -600,12 +640,20 @@ def main():
             pool = [c for c in clusters if c["section"] == sec["id"]]
         picked = [c for c in pool if id(c) not in used][:sec["limit"]]
         used.update(id(c) for c in picked)
-        if not picked:
-            continue
+        if picked:
+            filled.append((sec, picked))
+
+    sections_html, nav = [], []
+    for k, (sec, picked) in enumerate(filled):
         nav.append(f'<a href="#{sec["id"]}">{esc(sec["title"])}</a>')
+        # 섹션 끝에서 바로 다음 섹션으로 넘어가는 버튼 (마지막 섹션은 맨 앞으로)
+        nxt = filled[(k + 1) % len(filled)][0]
+        label = "다음" if k + 1 < len(filled) else "처음으로"
         sections_html.append(f'<section id="{sec["id"]}" aria-labelledby="h-{sec["id"]}">'
                              f'<h2 id="h-{sec["id"]}">{esc(sec["title"])}</h2>'
-                             + "\n".join(render_story(c, prefer, now) for c in picked) + "</section>")
+                             + "\n".join(render_story(c, prefer, now) for c in picked)
+                             + f'<p class="next"><a href="#{nxt["id"]}">{label}: {esc(nxt["title"])} ›</a></p>'
+                             + "</section>")
 
     sources_line = " · ".join(esc(n) for n in ok)
     if bad:
