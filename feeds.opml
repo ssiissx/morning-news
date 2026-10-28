@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <opml version="2.0"><head><title>아침 뉴스 출처</title></head><body>
-<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/news.xml"/>
-<outline type="rss" text="뉴시스" title="뉴시스" xmlUrl="https://newsis.com/RSS/sokbo.xml"/>
-<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&amp;plink=RSSREADER"/>
-<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=02&amp;plink=RSSREADER"/>
-<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=03&amp;plink=RSSREADER"/>
+<outline type="rss" text="KBS" title="KBS" xmlUrl="https://news.google.com/rss/search?q=site:news.kbs.co.kr+when:1d&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="MBC" title="MBC" xmlUrl="https://news.google.com/rss/search?q=site:imnews.imbc.com+when:1d&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="YTN" title="YTN" xmlUrl="https://news.google.com/rss/search?q=site:ytn.co.kr+when:1d&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="채널A" title="채널A" xmlUrl="https://news.google.com/rss/search?q=site:ichannela.com+when:1d&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
+<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/newsflashRssFeed.do?plink=RSSREADER"/>
+<outline type="rss" text="SBS · 정치" title="SBS · 정치" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 경제" title="SBS · 경제" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=02&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 사회" title="SBS · 사회" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=03&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 국제" title="SBS · 국제" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=07&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 생활·문화" title="SBS · 생활·문화" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=08&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 스포츠" title="SBS · 스포츠" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=09&amp;plink=RSSREADER"/>
+<outline type="rss" text="SBS · 연예" title="SBS · 연예" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=14&amp;plink=RSSREADER"/>
 <outline type="rss" text="JTBC" title="JTBC" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/newsflesh"/>
-<outline type="rss" text="한겨레" title="한겨레" xmlUrl="https://www.hani.co.kr/rss/"/>
-<outline type="rss" text="경향신문" title="경향신문" xmlUrl="https://www.khan.co.kr/rss/rssdata/total_news.xml"/>
-<outline type="rss" text="오마이뉴스" title="오마이뉴스" xmlUrl="https://rss.ohmynews.com/rss/ohmynews.xml"/>
-<outline type="rss" text="조선일보" title="조선일보" xmlUrl="https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml"/>
-<outline type="rss" text="동아일보" title="동아일보" xmlUrl="https://rss.donga.com/total.xml"/>
-<outline type="rss" text="국민일보" title="국민일보" xmlUrl="https://www.kmib.co.kr/rss/data/kmibRssAll.xml"/>
-<outline type="rss" text="세계일보" title="세계일보" xmlUrl="https://www.segye.com/Articles/RSSList/segye_recent.xml"/>
-<outline type="rss" text="매일경제" title="매일경제" xmlUrl="https://www.mk.co.kr/rss/30000001/"/>
-<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
-<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/international.xml"/>
-<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=07&amp;plink=RSSREADER"/>
-<outline type="rss" text="BBC 코리아" title="BBC 코리아" xmlUrl="https://feeds.bbci.co.uk/korean/rss.xml"/>
-<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss/headlines/section/topic/WORLD?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
-<outline type="rss" text="BBC News" title="BBC News" xmlUrl="https://feeds.bbci.co.uk/news/world/rss.xml"/>
-<outline type="rss" text="The Guardian" title="The Guardian" xmlUrl="https://www.theguardian.com/world/rss"/>
-<outline type="rss" text="Al Jazeera" title="Al Jazeera" xmlUrl="https://www.aljazeera.com/xml/rss/all.xml"/>
-<outline type="rss" text="New York Times" title="New York Times" xmlUrl="https://rss.nytimes.com/services/xml/rss/nyt/World.xml"/>
-<outline type="rss" text="NPR" title="NPR" xmlUrl="https://feeds.npr.org/1004/rss.xml"/>
-<outline type="rss" text="DW" title="DW" xmlUrl="https://rss.dw.com/rdf/rss-en-all"/>
-<outline type="rss" text="Google ニュース" title="Google ニュース" xmlUrl="https://news.google.com/rss?hl=ja&amp;gl=JP&amp;ceid=JP:ja"/>
-<outline type="rss" text="Japan Times" title="Japan Times" xmlUrl="https://www.japantimes.co.jp/feed/"/>
-<outline type="rss" text="nippon.com" title="nippon.com" xmlUrl="https://www.nippon.com/en/feed/"/>
-<outline type="rss" text="구글 뉴스" title="구글 뉴스" xmlUrl="https://news.google.com/rss/headlines/section/topic/SCIENCE?hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
-<outline type="rss" text="ScienceDaily" title="ScienceDaily" xmlUrl="https://www.sciencedaily.com/rss/mind_brain/psychology.xml"/>
-<outline type="rss" text="Aeon" title="Aeon" xmlUrl="https://aeon.co/feed.rss"/>
-<outline type="rss" text="Psyche" title="Psyche" xmlUrl="https://psyche.co/feed"/>
-<outline type="rss" text="Daily Nous" title="Daily Nous" xmlUrl="https://dailynous.com/feed/"/>
-<outline type="rss" text="연합뉴스" title="연합뉴스" xmlUrl="https://www.yna.co.kr/rss/culture.xml"/>
-<outline type="rss" text="SBS" title="SBS" xmlUrl="https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=08&amp;plink=RSSREADER"/>
-<outline type="rss" text="PetaPixel" title="PetaPixel" xmlUrl="https://petapixel.com/feed/"/>
-<outline type="rss" text="DPReview" title="DPReview" xmlUrl="https://www.dpreview.com/feeds/news.xml"/>
-<outline type="rss" text="Fstoppers" title="Fstoppers" xmlUrl="https://fstoppers.com/rss.xml"/>
+<outline type="rss" text="JTBC · 정치" title="JTBC · 정치" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/politics"/>
+<outline type="rss" text="JTBC · 경제" title="JTBC · 경제" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/economy"/>
+<outline type="rss" text="JTBC · 사회" title="JTBC · 사회" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/society"/>
+<outline type="rss" text="JTBC · 국제" title="JTBC · 국제" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/international"/>
+<outline type="rss" text="JTBC · 연예" title="JTBC · 연예" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/entertainment"/>
+<outline type="rss" text="JTBC · 스포츠" title="JTBC · 스포츠" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/sports"/>
+<outline type="rss" text="JTBC · 날씨" title="JTBC · 날씨" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/weather"/>
+<outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/browse/feed/"/>
+<outline type="rss" text="연합뉴스TV · 정치" title="연합뉴스TV · 정치" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/politics/feed/"/>
+<outline type="rss" text="연합뉴스TV · 국제" title="연합뉴스TV · 국제" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/international/feed/"/>
+<outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/economy/feed/"/>
+<outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/society/feed/"/>
+<outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/culture/feed/"/>
+<outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/sports/feed/"/>
+<outline type="rss" text="연합뉴스TV · 날씨" title="연합뉴스TV · 날씨" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/weather/feed/"/>
+<outline type="rss" text="MBN" title="MBN" xmlUrl="https://www.mbn.co.kr/rss/"/>
+<outline type="rss" text="MBN · 정치" title="MBN · 정치" xmlUrl="https://www.mbn.co.kr/rss/politics/"/>
+<outline type="rss" text="MBN · 경제" title="MBN · 경제" xmlUrl="https://www.mbn.co.kr/rss/economy/"/>
+<outline type="rss" text="MBN · 사회" title="MBN · 사회" xmlUrl="https://www.mbn.co.kr/rss/society/"/>
+<outline type="rss" text="MBN · 국제" title="MBN · 국제" xmlUrl="https://www.mbn.co.kr/rss/international/"/>
+<outline type="rss" text="TV조선" title="TV조선" xmlUrl="https://news.tvchosun.com/site/data/rss/rss.xml"/>
 </body></opml>
