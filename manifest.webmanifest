@@ -2,7 +2,7 @@
   "id": "./",
   "name": "아침 뉴스",
   "short_name": "아침 뉴스",
-  "description": "여러 언론사 기사를 사건별로 묶어 매일 아침 정리",
+  "description": "국내 방송사 기사를 사건별로 묶어 매일 아침 정리",
   "lang": "ko",
   "start_url": "./",
   "scope": "./",

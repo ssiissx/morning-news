@@ -498,6 +498,22 @@ TABS_JS = """
 """
 
 
+# 홈 화면에 저장한 앱(특히 아이폰)은 닫지 않고 뒤에 켜 두었다가 어제 화면을 그대로 다시 보여 주고,
+# 새로고침 버튼도 없다. 그래서 오늘 페이지는 30분 넘게 지나 다시 화면에 나오면 새로 받아 온다.
+# 보던 섹션(#sports)은 주소에 남아 있어서 새로 받아도 그 섹션이 열린다.
+REFRESH_JS = """
+(function(){
+  var loaded = Date.now();
+  function check(){
+    if (document.visibilityState === 'visible' && Date.now() - loaded > 30 * 60 * 1000) location.reload();
+  }
+  document.addEventListener('visibilitychange', check);
+  window.addEventListener('pageshow', function(e){ if (e.persisted) check(); });
+  window.addEventListener('focus', check);
+})();
+"""
+
+
 def render_page(now, sections_html, nav, stats, sources_line, days, current, prefix, method_note):
     day_links = []
     for d in days:
@@ -539,7 +555,7 @@ def render_page(now, sections_html, nav, stats, sources_line, days, current, pre
 <p>RSS 앱으로도 보려면 <a href="{home}feeds.opml">출처 목록(OPML)</a>을 가져가세요.</p>
 </footer>
 </div>
-<script>{TABS_JS}</script>
+<script>{TABS_JS}{REFRESH_JS if prefix == "" else ""}</script>
 </body>
 </html>
 """
