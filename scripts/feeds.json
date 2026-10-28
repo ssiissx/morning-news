@@ -1,7 +1,7 @@
 {
   "_설명": "아침 뉴스 출처와 섹션. 국내 방송사 기사만 모은다. feeds 의 section 은 그 RSS가 어느 섹션 기사인지, 없으면 기사에 붙은 분류(categories 표)로 정하고, 그것도 없으면 같은 사건을 다룬 다른 기사나 뜻이 가까운 기사를 보고 정한다. kind 가 gnews 인 곳은 공개 RSS가 없어서 구글 뉴스에서 그 방송사 사이트만 검색한 결과다(요약 없음). exclude 는 걸러낼 제목(정규식), hours 는 몇 시간 안의 기사까지 볼지.",
   "hours": 24,
-  "prefer": ["SBS", "JTBC", "연합뉴스TV", "MBN", "TV조선", "KBS", "MBC", "YTN", "채널A"],
+  "prefer": ["JTBC", "연합뉴스TV", "TV조선", "MBN", "SBS", "KBS", "MBC", "YTN", "채널A"],
   "exclude": "\\[[^\\]]*(일정|인사|부고|부음|동정|알림|포토|사진|화보|운세|카드뉴스|정정|바로잡습니다)[^\\]]*\\]|주요\\s?일정|국회\\s?일정|운세|로또|당첨번호|예고$|클로징|주요\\s?뉴스|헤드라인|뉴스\\s?브리핑|外$|EP\\.?\\s?\\d+|\\d{1,2}시\\s?뉴스$|^\\d{4}년 \\d{1,2}월 \\d{1,2}일",
   "sections": [
     {"id": "top", "title": "오늘의 주요 뉴스", "limit": 10, "min_outlets": 3, "from": ["politics", "economy", "society", "world", "life"]},
@@ -42,6 +42,7 @@
     {"name": "JTBC", "section": "ent", "url": "https://news-ex.jtbc.co.kr/v1/get/rss/section/entertainment"},
     {"name": "JTBC", "section": "sports", "url": "https://news-ex.jtbc.co.kr/v1/get/rss/section/sports"},
     {"name": "JTBC", "section": "weather", "url": "https://news-ex.jtbc.co.kr/v1/get/rss/section/weather"},
+    {"name": "JTBC", "kind": "gnews", "_메모": "JTBC RSS가 GitHub 서버에서 막히는 날을 위한 예비. 공식 RSS와 겹치는 기사는 제목으로 하나로 합쳐진다", "url": "https://news.google.com/rss/search?q=site:news.jtbc.co.kr+when:1d&hl=ko&gl=KR&ceid=KR:ko"},
 
     {"name": "연합뉴스TV", "url": "http://www.yonhapnewstv.co.kr/browse/feed/"},
     {"name": "연합뉴스TV", "section": "politics", "url": "http://www.yonhapnewstv.co.kr/category/news/politics/feed/"},

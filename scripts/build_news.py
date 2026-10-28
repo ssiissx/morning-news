@@ -112,10 +112,14 @@ def clean_text(s):
 
 
 BYLINE_RE = re.compile(r"^[(\[【][^)\]】]{1,24}=[^)\]】]{1,24}[)\]】]\s*(?:[가-힣·,\s]{2,24}?(?:기자|특파원|통신원)\s*=?\s*)?")
+ANCHOR_RE = re.compile(r"^(?:【\s*앵커\s*멘트\s*】|\[\s*앵커\s*\]|<\s*앵커\s*>)\s*")
 
 
 def clean_summary(s, title):
-    s = BYLINE_RE.sub("", clean_text(s)).strip()
+    s = ANCHOR_RE.sub("", BYLINE_RE.sub("", clean_text(s)).strip())
+    # SBS는 사진 설명이 본문에 띄어쓰기 없이 붙어 와서("▲ 자료화면금융권을…") 끊을 곳을 알 수 없다
+    if s.startswith("▲"):
+        return ""
     if len(s) < 25 or s == title:
         return ""
     if len(s) <= 170:
@@ -530,6 +534,14 @@ def gather(config, now):
                 fetched[u] = fut.result()
             except Exception as e:  # 한 곳이 실패해도 나머지로 만든다
                 errors[u] = f"{type(e).__name__}: {str(e)[:80]}"
+    # 같은 방송사 주소를 한꺼번에 요청하면 응답이 끊기는 곳이 있어서(2026-10-28 JTBC 8곳 모두 시간 초과)
+    # 실패한 주소는 하나씩 한 번 더 받아 본다
+    for u in list(errors):
+        try:
+            fetched[u] = fetch_url(u)
+            del errors[u]
+        except Exception as e:
+            errors[u] = f"{type(e).__name__}: {str(e)[:80]}"
 
     ok, bad = [], []
     cutoff = now - timedelta(hours=config.get("hours", 24))
