@@ -1,0 +1,6 @@
+# 뜻 비교 모델을 돌리는 데 필요한 것. PyTorch는 GPU용(수 GB)을 피하려고 CPU판을 먼저 따로 설치한다:
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r scripts/requirements.txt
+# 설치하지 않아도 build_news.py 는 돌아가고, 그때는 제목 글자만 비교해서 묶는다.
+sentence-transformers==6.2.0
+transformers==5.21.0

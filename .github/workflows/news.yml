@@ -2,7 +2,9 @@ name: 아침 뉴스
 
 on:
   schedule:
-    - cron: "0 22 * * *"   # 매일 오전 7시(한국 시간). GitHub 사정으로 몇십 분 늦게 돌 수 있다.
+    # 매일 오전 6시 20분(한국 시간). GitHub 예약은 정각에 몰려 30분~1시간씩 늦기도 해서,
+    # 7시 전에 받아 볼 수 있게 일찍, 정각을 피해 잡았다.
+    - cron: "20 21 * * *"
   workflow_dispatch:       # Actions 탭에서 'Run workflow'를 누르면 바로 실행
   push:
     branches: [main]
@@ -27,8 +29,30 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+
+      # 뜻 비교 모델을 돌릴 도구. PyTorch는 GPU용(수 GB)을 피하려고 CPU판을 따로 받는다.
+      # 설치가 실패해도 멈추지 않는다 — 그날은 제목 글자만 비교해서 페이지를 만든다.
+      - name: 도구 설치
+        continue-on-error: true
+        run: |
+          pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r scripts/requirements.txt
+
+      # 모델(약 0.45GB)은 처음 한 번 받아 캐시에 두고 다음 날부터 다시 받지 않는다
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-jhgan-ko-sroberta-multitask
+
       - name: 뉴스 모으기
-        run: python3 scripts/build_news.py
+        env:
+          HF_HUB_DISABLE_TELEMETRY: "1"
+        run: python scripts/build_news.py
 
       # 매일 커밋이 남아야 GitHub가 예약 실행을 멈추지 않는다(60일 무활동 시 정지).
       - name: 기록 저장
