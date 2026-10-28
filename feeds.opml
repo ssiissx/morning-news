@@ -20,6 +20,7 @@
 <outline type="rss" text="JTBC · 연예" title="JTBC · 연예" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/entertainment"/>
 <outline type="rss" text="JTBC · 스포츠" title="JTBC · 스포츠" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/sports"/>
 <outline type="rss" text="JTBC · 날씨" title="JTBC · 날씨" xmlUrl="https://news-ex.jtbc.co.kr/v1/get/rss/section/weather"/>
+<outline type="rss" text="JTBC" title="JTBC" xmlUrl="https://news.google.com/rss/search?q=site:news.jtbc.co.kr+when:1d&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"/>
 <outline type="rss" text="연합뉴스TV" title="연합뉴스TV" xmlUrl="http://www.yonhapnewstv.co.kr/browse/feed/"/>
 <outline type="rss" text="연합뉴스TV · 정치" title="연합뉴스TV · 정치" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/politics/feed/"/>
 <outline type="rss" text="연합뉴스TV · 국제" title="연합뉴스TV · 국제" xmlUrl="http://www.yonhapnewstv.co.kr/category/news/international/feed/"/>
