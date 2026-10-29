@@ -417,9 +417,11 @@ def render_story(c, prefer, now):
 CSS = """
 :root{--bg:#F4F6F9;--surface:#FFFFFF;--ink:#16202B;--soft:#566373;--line:#DCE2E9;
 --accent:#2A55C9;--badge-bg:#E4ECFF;--badge-ink:#1E3F99;
+--ok-bg:#E3F4E8;--ok-ink:#17622E;--old-bg:#FFF1D6;--old-ink:#7A4B00;
 --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Hiragino Sans",system-ui,sans-serif;}
 @media (prefers-color-scheme: dark){:root{--bg:#0E131A;--surface:#151C25;--ink:#E5EAF0;--soft:#9AA6B4;
---line:#26303C;--accent:#93B2FF;--badge-bg:#1B2742;--badge-ink:#B9CCFF;color-scheme:dark}}
+--line:#26303C;--accent:#93B2FF;--badge-bg:#1B2742;--badge-ink:#B9CCFF;
+--ok-bg:#14291C;--ok-ink:#8FD6A4;--old-bg:#33270E;--old-ink:#F2C77A;color-scheme:dark}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
@@ -430,6 +432,12 @@ padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
 header .day{margin:0;color:var(--soft);font-size:.9rem;font-weight:600}
 h1{margin:4px 0 6px;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em}
 header .stat{margin:0;color:var(--soft);font-size:.85rem}
+.fresh{margin:12px 0 0;padding:9px 12px;border-radius:10px;background:var(--badge-bg);color:var(--badge-ink);
+font-size:.88rem;font-weight:600;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.fresh.ok{background:var(--ok-bg);color:var(--ok-ink)}
+.fresh.old{background:var(--old-bg);color:var(--old-ink)}
+.fresh button{font:inherit;font-size:.82rem;padding:4px 12px;border:1px solid currentColor;border-radius:999px;
+background:transparent;color:inherit;cursor:pointer}
 nav.jump{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
 margin:14px -16px 0;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
 nav.jump::-webkit-scrollbar{display:none}
@@ -514,7 +522,49 @@ REFRESH_JS = """
 """
 
 
+# 오늘 뉴스가 올라왔는지 머리말 아래 띠로 바로 보여 준다. 만든 시각을 페이지에 박아 두고, 열 때마다
+# 기기의 지금 시각(한국 날짜 기준)과 견준다. 오늘 만든 페이지면 초록, 아니면 노랑 + '다시 확인' 버튼.
+# GitHub 예약 실행이 몇 시간씩 늦는 날이 있어서(2026-10-29 3시간 43분), 어제 페이지를 오늘 것으로 착각하지 않게 한다.
+# 스크립트가 안 돌면 띠에는 만든 시각만 그대로 적혀 있다.
+FRESH_JS = """
+(function(){
+  var el = document.getElementById('fresh');
+  var built = el ? Date.parse(el.getAttribute('data-built')) : NaN;
+  if (isNaN(built)) return;
+  var DAY = 24 * 3600 * 1000;
+  function kst(ms){ return new Date(ms + 9 * 3600 * 1000); }
+  function ymd(d){ return d.toISOString().slice(0, 10); }
+  function clock(d){ var h = d.getUTCHours(); return (h < 12 ? '오전 ' : '오후 ') + (h % 12 || 12) + ':' + ('0' + d.getUTCMinutes()).slice(-2); }
+  function paint(){
+    var b = kst(built), gap = Math.round((Date.parse(ymd(kst(Date.now()))) - Date.parse(ymd(b))) / DAY);
+    el.textContent = '';
+    if (gap <= 0){
+      el.className = 'fresh ok';
+      el.textContent = '✓ 오늘 ' + clock(b) + '에 갱신됐어요';
+      return;
+    }
+    el.className = 'fresh old';
+    var msg = document.createElement('span');
+    msg.textContent = (gap === 1 ? '어제 ' : gap + '일 전 ') + (b.getUTCMonth() + 1) + '/' + b.getUTCDate() + ' ' + clock(b)
+      + ' 기사예요. 오늘 뉴스는 아직 안 올라왔어요 (GitHub 사정으로 몇 시간 늦을 때가 있어요)';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = '다시 확인';
+    btn.addEventListener('click', function(){ location.reload(); });
+    el.appendChild(msg);
+    el.appendChild(btn);
+  }
+  paint();
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') paint(); });
+  window.addEventListener('pageshow', paint);
+})();
+"""
+
+
 def render_page(now, sections_html, nav, stats, sources_line, days, current, prefix, method_note):
+    # 갱신 띠는 '오늘' 화면에만 둔다. 지난 날짜 페이지는 처음부터 지난 것이라 경고할 이유가 없다.
+    fresh = (f'<p class="fresh" id="fresh" data-built="{now.isoformat(timespec="seconds")}">'
+             f'{now.month}/{now.day} {fmt_time(now)}에 갱신됐어요</p>') if prefix == "" else ""
     day_links = []
     for d in days:
         href = f"{prefix}archive/{d}.html" if prefix != "../" else f"{d}.html"
@@ -543,6 +593,7 @@ def render_page(now, sections_html, nav, stats, sources_line, days, current, pre
 <p class="day">{fmt_day(now)}</p>
 <h1>아침 뉴스</h1>
 <p class="stat">{fmt_time(now)} 기준 · 방송사 {stats['outlets']}곳의 기사 {stats['items']:,}건을 같은 사건끼리 묶었어요</p>
+{fresh}
 </header>
 <nav class="jump" aria-label="섹션">{nav}</nav>
 {sections_html}
@@ -555,7 +606,7 @@ def render_page(now, sections_html, nav, stats, sources_line, days, current, pre
 <p>RSS 앱으로도 보려면 <a href="{home}feeds.opml">출처 목록(OPML)</a>을 가져가세요.</p>
 </footer>
 </div>
-<script>{TABS_JS}{REFRESH_JS if prefix == "" else ""}</script>
+<script>{TABS_JS}{REFRESH_JS + FRESH_JS if prefix == "" else ""}</script>
 </body>
 </html>
 """
