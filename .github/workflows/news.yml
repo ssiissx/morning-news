@@ -2,9 +2,10 @@ name: 아침 뉴스
 
 on:
   schedule:
-    # 매일 오전 6시 20분(한국 시간). GitHub 예약은 정각에 몰려 30분~1시간씩 늦기도 해서,
-    # 7시 전에 받아 볼 수 있게 일찍, 정각을 피해 잡았다.
-    - cron: "20 21 * * *"
+    # 2시간마다, 한국 시간 짝수 시 20분(00:20, 02:20, … 06:20, 08:20, … 22:20). 새 기사를 낮에도 빨리 보려고.
+    # 정각을 피한 건 GitHub 예약이 정각에 몰려 늦기 때문. 밤 실행도 두는 건 아침 6:20 실행이 몇 시간씩
+    # 늦는 날(2026-10-29 3시간 43분)에도 새벽 실행분이 아침 화면을 채워 주게 하려는 것.
+    - cron: "20 1-23/2 * * *"
   workflow_dispatch:       # Actions 탭에서 'Run workflow'를 누르면 바로 실행
   push:
     branches: [main]
@@ -81,7 +82,7 @@ jobs:
             echo "바뀐 내용이 없어 커밋하지 않아요"
             exit 0
           fi
-          git commit -m "아침 뉴스 $(TZ=Asia/Seoul date +%F)"
+          git commit -m "아침 뉴스 $(TZ=Asia/Seoul date "+%F %H:%M")"
           push_with_rebase "${GITHUB_REF_NAME}"
 
       - uses: actions/configure-pages@v5
