@@ -38,7 +38,11 @@
 - `exclude`: 걸러낼 제목(정규식). 국회 일정·운세·인사·부고·뉴스 예고 같은 정기 코너가 여기 있어요.
 - 섹션의 `limit`: 몇 개까지 보여줄지. 주요 뉴스의 `min_outlets`: 몇 곳 이상 보도한 사건만 올릴지.
 
-**시간 바꾸기**: `news.yml` 의 `cron: "20 1-23/2 * * *"` 는 세계 표준시 홀수 시 20분마다 = 한국 시간 짝수 시 20분마다(오전 6:20, 8:20, … 밤 10:20, 새벽 0:20…), 하루 12번입니다. 한국 시간에서 9시간을 빼서 적으면 됩니다. GitHub 예약은 30분~몇 시간 늦기도 해서 정각을 피했어요.
+**시간 바꾸기**: 정시 실행은 [cron-job.org](https://cron-job.org)가 한국 시간 짝수 시 20분마다(오전 6:20, 8:20, … 밤 10:20, 새벽 0:20…) GitHub에 '지금 실행'을 보내서 합니다. 시각은 cron-job.org의 작업 화면에서 바꿉니다. GitHub 자체 예약(`news.yml` 의 `cron`, 세계 표준시라 한국 시간에서 9시간 뺀 값)은 자주 늦거나 빠져서, cron-job.org 실행이 3시간 넘게 없을 때만 대신 도는 예비로 남겨 두었어요.
+
+cron-job.org 작업 설정(처음 한 번):
+1. GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token. Repository access는 `morning-news` 하나만, Permissions의 **Actions**를 Read and write로. 만료일은 가장 길게 — 만료되면 새로 만들어 아래 Authorization 값만 바꿉니다.
+2. cron-job.org 작업: URL `https://api.github.com/repos/ssiissx/morning-news/actions/workflows/news.yml/dispatches`, 실행 시각은 매일 0·2·4·…·22시 20분(시간대 Asia/Seoul), 요청 방식 POST, 본문 `{"ref":"main"}`, 헤더 `Authorization: Bearer <토큰>`, `Accept: application/vnd.github+json`, `Content-Type: application/json`. 성공하면 GitHub가 204를 돌려줍니다.
 
 **지금 바로 만들기**: 저장소의 Actions 탭 → 아침 뉴스 → Run workflow.
 

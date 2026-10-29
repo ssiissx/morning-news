@@ -1,17 +1,19 @@
 name: 아침 뉴스
 
 on:
+  # 정시 실행은 cron-job.org가 한국 시간 짝수 시 20분(00:20, 02:20, … 06:20, … 22:20)마다 아래
+  # workflow_dispatch를 불러서 한다. GitHub 예약은 늦거나 아예 안 돌아서(2026-10-29 오후~30일 새벽 8번 중
+  # 2번만, 그것도 1시간씩 늦게) 갱신 시각이 들쭉날쭉했다.
+  # 이 예약은 cron-job.org가 끊겼을 때(토큰 만료 등)만 대신 도는 예비 — 아래 gate 참고.
   schedule:
-    # 2시간마다, 한국 시간 짝수 시 20분(00:20, 02:20, … 06:20, 08:20, … 22:20). 새 기사를 낮에도 빨리 보려고.
-    # 정각을 피한 건 GitHub 예약이 정각에 몰려 늦기 때문. 밤 실행도 두는 건 아침 6:20 실행이 몇 시간씩
-    # 늦는 날(2026-10-29 3시간 43분)에도 새벽 실행분이 아침 화면을 채워 주게 하려는 것.
     - cron: "20 1-23/2 * * *"
-  workflow_dispatch:       # Actions 탭에서 'Run workflow'를 누르면 바로 실행
+  workflow_dispatch:       # cron-job.org가 부르는 곳. Actions 탭의 'Run workflow'도 같다.
   push:
     branches: [main]
     paths-ignore: ["index.html", "archive/**", "feeds.opml"]
 
 permissions:
+  actions: read        # gate가 최근 실행 기록을 본다
   contents: write
   pages: write
   id-token: write
@@ -23,7 +25,30 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # GitHub 예약 실행은 최근 3시간 안에 cron-job.org(workflow_dispatch) 실행이 있었으면 쉰다.
+  # 둘 다 돌면 GitHub의 늦은 실행이 갱신 시각을 다시 들쭉날쭉하게 만든다.
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.check.outputs.go }}
+    steps:
+      - id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          go=true
+          if [ "${{ github.event_name }}" = schedule ]; then
+            last=$(gh run list -R "$GITHUB_REPOSITORY" -w news.yml -e workflow_dispatch -L 1 --json createdAt -q '.[0].createdAt')
+            if [ -n "$last" ] && [ $(( $(date +%s) - $(date -d "$last" +%s) )) -lt 10800 ]; then
+              echo "cron-job.org 실행($last)이 살아 있어 이번 예약은 건너뛰어요"
+              go=false
+            fi
+          fi
+          echo "go=$go" >> "$GITHUB_OUTPUT"
+
   build:
+    needs: gate
+    if: needs.gate.outputs.go == 'true'
     runs-on: ubuntu-latest
     # 아래 단계별 재시도까지 다 써도 끝나도록 넉넉히. 멈춰 버린 실행이 끝없이 도는 것만 막는다.
     timeout-minutes: 30
