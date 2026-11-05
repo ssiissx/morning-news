@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F4F6F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E131A" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-title" content="아침 뉴스">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="icon" type="image/png" href="../icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<title>아침 뉴스 · 11월 6일</title>
+<style>
+:root{--bg:#F4F6F9;--surface:#FFFFFF;--ink:#16202B;--soft:#566373;--line:#DCE2E9;
+--accent:#2A55C9;--badge-bg:#E4ECFF;--badge-ink:#1E3F99;
+--ok-bg:#E3F4E8;--ok-ink:#17622E;--old-bg:#FFF1D6;--old-ink:#7A4B00;
+--sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","Hiragino Sans",system-ui,sans-serif;}
+@media (prefers-color-scheme: dark){:root{--bg:#0E131A;--surface:#151C25;--ink:#E5EAF0;--soft:#9AA6B4;
+--line:#26303C;--accent:#93B2FF;--badge-bg:#1B2742;--badge-ink:#B9CCFF;
+--ok-bg:#14291C;--ok-ink:#8FD6A4;--old-bg:#33270E;--old-ink:#F2C77A;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));
+padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+header .day{margin:0;color:var(--soft);font-size:.9rem;font-weight:600}
+h1{margin:4px 0 6px;font-size:2.1rem;line-height:1.15;letter-spacing:-.02em}
+header .stat{margin:0;color:var(--soft);font-size:.85rem}
+.fresh{margin:12px 0 0;padding:9px 12px;border-radius:10px;background:var(--badge-bg);color:var(--badge-ink);
+font-size:.88rem;font-weight:600;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center}
+.fresh.ok{background:var(--ok-bg);color:var(--ok-ink)}
+.fresh.old{background:var(--old-bg);color:var(--old-ink)}
+.fresh button{font:inherit;font-size:.82rem;padding:4px 12px;border:1px solid currentColor;border-radius:999px;
+background:transparent;color:inherit;cursor:pointer}
+nav.jump{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+margin:14px -16px 0;padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.jump::-webkit-scrollbar{display:none}
+nav.jump a{flex:none;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+font-size:.875rem;text-decoration:none;color:var(--ink)}
+nav.jump a[aria-current]{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+section{margin-top:34px;scroll-margin-top:64px}
+.tabs section{display:none;margin-top:22px}
+.tabs section.on{display:block}
+.next{margin:20px 0 0;text-align:right}
+.next a{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);
+color:var(--accent);font-size:.875rem;font-weight:600;text-decoration:none}
+h2{margin:0 0 4px;font-size:1.35rem;letter-spacing:-.01em}
+.story{padding:14px 0;border-bottom:1px solid var(--line)}
+.story:last-of-type{border-bottom:0}
+.story h3{margin:0;font-size:1.06rem;line-height:1.4;font-weight:650}
+.story h3 a{text-decoration:none}
+.story h3 a:hover{text-decoration:underline}
+.lead{margin:6px 0 0;color:var(--soft);font-size:.93rem}
+.meta{margin:8px 0 0;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;color:var(--soft);font-size:.8rem}
+.count{padding:1px 8px;border-radius:6px;background:var(--badge-bg);color:var(--badge-ink);font-weight:600;font-variant-numeric:tabular-nums}
+.when{margin-left:auto;font-variant-numeric:tabular-nums}
+details{margin-top:8px;font-size:.88rem}
+summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:.82rem}
+details ul{list-style:none;margin:8px 0 0;padding:0 0 0 12px;border-left:2px solid var(--line);display:grid;gap:6px}
+details .o{display:inline-block;min-width:5.5em;margin-right:6px;color:var(--soft);font-size:.8rem}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:.82rem;display:grid;gap:12px}
+footer h2{font-size:1rem;color:var(--ink)}
+.days{display:flex;flex-wrap:wrap;gap:6px}
+.days a{padding:4px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);text-decoration:none;color:var(--ink);font-size:.82rem}
+.days a[aria-current]{border-color:var(--accent);color:var(--accent);font-weight:600}
+footer p{margin:0}
+.bad{color:var(--soft);text-decoration:line-through}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<p class="day">11월 6일 금요일</p>
+<h1>아침 뉴스</h1>
+<p class="stat">오전 12:21 기준 · 방송사 9곳의 기사 985건을 같은 사건끼리 묶었어요</p>
+
+</header>
+<nav class="jump" aria-label="섹션"><a href="#top">오늘의 주요 뉴스</a><a href="#weather">날씨</a><a href="#politics">정치</a><a href="#economy">경제</a><a href="#society">사회</a><a href="#world">국제</a><a href="#life">생활·문화</a><a href="#ent">연예</a><a href="#sports">스포츠</a></nav>
+<section id="top" aria-labelledby="h-top"><h2 id="h-top">오늘의 주요 뉴스</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326697" rel="noopener">&#x27;조작기소 특검법&#x27; 처리 목전…국힘 &quot;장외투쟁&quot; 전면전 선포</a></h3>
+<p class="lead">윤석열 정부 검찰이 조작 기소한 의혹이 있는 사건을 수사할 조작기소 특검법이 추진됩니다. 민주당이 신속히 처리할 예정인데 지금 국회에서는 무제한 토론, 필리버스터가 진행 중입니다. 취재기자 연결합니다.</p>
+<p class="meta"><span class="count">9곳 보도</span><span>TV조선 · SBS · 연합뉴스TV 외 6곳</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (8)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590270.html" rel="noopener">與 조작기소특검법 강행에 野, 1박2일 필리버스터…모레 &#x27;장외투쟁&#x27;</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832904&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">조작기소 의혹 특검법 본회의 상정에…필리버스터 돌입</a></li><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105210051IOs" rel="noopener">靑, &#x27;조작기소 특검법&#x27;에 &quot;檢 권력 남용 수사&quot;</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229297" rel="noopener">민주, 조작기소 특검법 본회의 상정…국힘 필리버스터 맞대응</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE4zTFB6ZnNOR2lFVjlaRUliaU9TamNleWZDd2dibnktS0RwYlRCUnNmUDZaQVpyU0lLZVNFVms3M0dMR3RBeFlHdVhOQ05pUklyS0ZGa2FGZjA0Q0ZpcGVZN24tM0Y1bW1oMlhzaGI5bw?oc=5" rel="noopener">&#x27;조작기소 특검법&#x27; 필리버스터 대치...내일 처리 수순</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1SeS11SmJvM2dyZGlCN085eTBnXzJMT3ZacGp0Wk1hOHI2ZU4zSl93VVpWcS02Ul83SjFaSk5JVlRjYkZEcjJVLXo2NDZWSkdTN2dmMlRHUmpOQ3VuTVVvYmlvUkFxTW0xOVlQcTRNbFFSWmRXVmxoUNIBeEFVX3lxTE1mNnZJbHNuMGtZbkNSOFU1X1BpeHhCYWxfM0pzZHVhV2ZXSkhRU2ROZl9sR25mejhXRnFpRUgyS0ZiVEVtQTBQTzN5T2Y5UjgtUWVnVXJ4RDltZzlvN2k5RVZ3a3lBVWkzN25rbUpQSUYtakNBVnhmTA?oc=5" rel="noopener">&#x27;조작기소 특검법&#x27; 본회의 상정‥필리버스터 돌입</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9CU2QyY1YyZGxOeGppMGk1d2c2ekJzMlR2bnJ0dDdiT1NPOG1IeHRvSlRWMEJSQVFTbVltVHl6cHU1WWkwOFhEREx4NTJLcC1VdGRSZ0lDd0VqRXhGaXJHZE9QdkxEZw?oc=5" rel="noopener">조작기소 특검법안 본회의 상정…무제한토론 돌입</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBSYXdKT2VPcG5WUUZhazNjWWtSdWVXRXNYZzhPRjdTb1lPU3dKbTJpVzVDdlk1dEJ3OTNSNElGNUNGTG05aUIwNVRIYWd6a1l6SnJlSXlrSjR2SkNuQS1Uc2NBMNIBY0FVX3lxTFBSYXdKT2VPcG5WUUZhazNjWWtSdWVXRXNYZzhPRjdTb1lPU3dKbTJpVzVDdlk1dEJ3OTNSNElGNUNGTG05aUIwNVRIYWd6a1l6SnJlSXlrSjR2SkNuQS1Uc2NBMA?oc=5" rel="noopener">[속보]‘조작기소 특검법’ 오늘 국회 본회의 상정</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326657" rel="noopener">&quot;제 명에 못 살겠다&quot;던 윤…&#x27;사형 구형&#x27; 항소심 최후진술</a></h3>
+<p class="lead">[지귀연/부장판사 (지난 2월 19일) : 주문을 선고하도록 하겠습니다. 피고인 윤석열을 무기징역에 처합니다. 피고인 김용현을 징역 30년에 처합니다. 피고인 노상원을…] 내란 우두머리 혐의로 1심에서 무기징역을</p>
+<p class="meta"><span class="count">9곳 보도</span><span>연합뉴스TV · SBS · TV조선 외 6곳</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (8)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH202611052155522lr" rel="noopener">尹 내란 2심 내년 1월 선고…&quot;각성 위한 계엄&quot;</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832893&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&quot;난 무죄&quot; 윤석열 26쪽 분량 최후진술…선고는 내년 1월</a></li><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590284.html" rel="noopener">尹 &quot;&#x27;조작기소 주장&#x27; 권력자들 한둘 아냐&quot;…내란 2심 1월 26일 선고</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229321" rel="noopener">윤석열 &#x27;내란 우두머리&#x27; 혐의 2심 내년 1월 26일 선고</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE0tNzJiSlhiQ1VQSkZxRFEyTmM5ZHc3aGY2ZDBKNG0wbW9JZWJHUWJzR01scDEtRHN3QnFmdzZ0SWZnbEpCQ3RwZ0lTTVVSVFBHbjBCaXk5dFZFZFVXb0hIOWMyVnduYm5mbktDWENBUjRURHVQc2ZYd9IBeEFVX3lxTFBQRzk5bTdySjROY3BkU2tzdFh3WnpFdF9idUFrUmJScS1YRkw0V05xdFYzc3ZkSnRqT29mNzE5eXJaRjI1cjBxeGQzdmctQURCTzFjVjVzMXNzR2p2bm91Zm8zbHJVaTlITllocjRpQU82OFFCc2E1bg?oc=5" rel="noopener">윤석열, 항소심 내란 재판 최후진술도 궤변‥선고는 내년 1월 26일</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBab2pNRXdlS1MtclhSYnBRNEtDbGxRZkxSV3ZaSHAwbjlLU2U0SktlZFZYZjZ0cW8wNlpqekRwaUdaNGFHYWI4ZENGVlNrOGdSUnVJdDV5X3ZrYWc?oc=5" rel="noopener">[속보] 윤석열 ‘내란 우두머리’ 2심 내년 1월 26일 선고</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9obG1TT0FON0VDMmtxeVdJQ2tMSVZRemcwb2JmZ05yWkJQOWdJZkItZ3hlX1JhaTQxTk1XQmJNWFNUYkM3OEVyWWxhbThnVTlib0twbmpPX0VBbUJyQUUxcDVMUdIBY0FVX3lxTE9obG1TT0FON0VDMmtxeVdJQ2tMSVZRemcwb2JmZ05yWkJQOWdJZkItZ3hlX1JhaTQxTk1XQmJNWFNUYkM3OEVyWWxhbThnVTlib0twbmpPX0VBbUJyQUUxcDVMUQ?oc=5" rel="noopener">[속보]윤석열 ‘내란 우두머리’ 2심 내년 1월 26일 선고</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1BWDdrQk1oN2tVYmZOc2h0RTVISnVmVERGY3NMZzZUM0lJNlA1X25HMHFOMUlwSXFpZHBZdGsyb3BDMDdGS1J5Y3RreHFqSGRobEVqWVVMS0R0YURqaGc?oc=5" rel="noopener">&#x27;내란 우두머리 혐의&#x27; 윤석열 항소심 내년 1월 26일 선고</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326696" rel="noopener">구속 피한 60대, 전자발찌 풀고 2주 만에 전 연인 살해</a></h3>
+<p class="lead">전 연인을 상대로 스토킹을 한 60대 남성이 전자발찌를 푼 지 2주 만에 살인을 저질렀습니다. 이번에도 비극을 막을 기회는 있었습니다. 넉 달 전 경찰이 남성에 대해 구속영장을 신청했지만 검찰이 반려했습니</p>
+<p class="meta"><span class="count">8곳 보도</span><span>연합뉴스TV · SBS · TV조선 외 5곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (7)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105230202ChU" rel="noopener">전자발찌 종료 2주 만에 전 연인 살해…60대 남성 검거</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832896&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&quot;실종됐어요&quot; 숨진 채 발견…전자발찌 풀린 지 2주 만에</a></li><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590276.html" rel="noopener">&#x27;전자장치&#x27; 해제 2주 만에 전 여친 살해한 60대 남성 체포</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5NREl5WF9uTVJIMy1kRTNIV2JOTnQ5MXd6QWlYR2VQR2hqdE5OS2FsaVV6YXQ2OS1pM0tGT2FYUWZSSDdqcFoyZmRiM05PTGdPOWZUU3kxYnFMbkxtS0E?oc=5" rel="noopener">&#x27;스토킹 살인&#x27; 60대 체포...&quot;전자발찌 해제 2주 만&quot;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE83R3FaanpzdDd2Z01ybWYwcjhWYzVzMDV3SE5PbHhuUm9KdVVkYllPNEFab0o4WU5BaGVMdUwtc1dnYVMzTjNPTWpZUEItVjRsdXFOT0phNU91RzA?oc=5" rel="noopener">스토킹 전자발찌 종료 2주 만에 ‘전 연인’ 살해</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE13dDFyRFdwRmk4czNiTlh2d3B4UDVCM0U1LTlCSVlaem1CZWZpTmc5ZG5fYU1maFR0VldRel9UMkdkbFNsWVNNLXN5RUtkSkJMLWExQ1RfR3AteHk2bVHSAWNBVV95cUxNVTFsTExaV2pKTFRQb2JCaktTeVZweHN5Z0N2SHRsWHZCSkprZDh3aHlQT3c0RHcyOW5VUk1BNHZGeE5Wd1FYVU40d3BVa0gyTGduVEhyVlN6QVBsY1hldUxuR28?oc=5" rel="noopener">스토킹 전자발찌 풀리자 전 연인 살해…60대 남성 체포</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE1XTWFtUFVkNXFGSlFkdDRWZ3hQMUxlZFNLVUE4VnhMTnZSb2YtY2dleFp0eWp1N0stSXM0cGRzdEVaTjZHMmRydmZwbzVhQ0ZTV05LZG1wTzVxS3h6NlpOVHJxRG9UbVh5bklKUzVtb3lrZ3huc0JB0gF3QVVfeXFMTms4NTh5T3B0V3dWLTF2WmNVc0E3R3BlZVd4Y293RG85c0t4MDRNMWpWX0F2YlFOZExnZnpyaW9qWi04WGZJcHo1Q0htVjZFNFBNdU9UckZrTDlhc1pyTXlPM25mTDkyWlhRWGlDSkhaWkdvMTl5cnM?oc=5" rel="noopener">[단독] 전자발찌 위치추적 끝나자마자‥전 연인 살해 뒤 자해</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326669" rel="noopener">&#x27;오만 남방까지&#x27; 청해부대 작전 범위 확대…초계기 투입</a></h3>
+<p class="lead">국방부가 청해부대 작전 범위를 기존 아덴만 인근에서 호르무즈 해협에 좀 더 가까운 오만 남방까지 확대하는 방안을 추진합니다. 해상초계기 1대와 기뢰 제거를 위한 무인잠수정을 비롯한 기뢰제거장비를 새롭게 투</p>
+<p class="meta"><span class="count">7곳 보도</span><span>TV조선 · JTBC · MBC 외 4곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (6)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590266.html" rel="noopener">청해부대 작전구역 2배 확대…美 파병 요구에 첫 조치</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTFBvdkl1Z2F1Wk1xcnJsWERRQmN2TWdPTzNDR09WWWNJWk4tTWUtY1JkSkVweTVRbEdkanFGc3hobk1qRVlkSTRLTkRPUkVVQjJzejZHd1ViNVdqNnpNYTB0aHRZNjZLVDN5WE42eWRwVlViZGJFUUZGS9IBeEFVX3lxTE9mOUdDQ1I5aHBEUGh1SW02QTRYTVJSSFpUbC13eUk0VzE1RDUxdkFtNEpETWxFTldXcDFoRTdseEQ4SG5kUXBONEZYSV9CcURSb3JpOW5CX3ZSdVJndmpWU1VXSlVvQXB1T0txUUVVNEpnUzc2bXlaQw?oc=5" rel="noopener">청해부대, 오만 남쪽까지 확대‥&quot;전쟁에는 불관여&quot;</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229294" rel="noopener">&#x27;포세이돈&#x27;에 무인 소해 장비까지…청해부대 보강 전력 역할은?</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5GcG5GcnMySmxNSWdMS2dnRUNzUUpqOGFmU3dfV25FNXg0QXNYZlNGTGdBWm5vNUtoVmFwdzk1REFscVlzUW9WMDFYeTYzbEhLSzA2NkJpakw1SjZucE80SVlIMNIBY0FVX3lxTE5GcG5GcnMySmxNSWdMS2dnRUNzUUpqOGFmU3dfV25FNXg0QXNYZlNGTGdBWm5vNUtoVmFwdzk1REFscVlzUW9WMDFYeTYzbEhLSzA2NkJpakw1SjZucE80SVlIMA?oc=5" rel="noopener">‘잠수함 킬러’ 포세이돈 첫 파견…섬광탄 장착</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBhVVlUbThUYnNpZkdhVmZOMG5FTDYyVXhuNkxGUmtWWVRCM2FMdjNSeU00eGFMRkZ3QUpXdW9oUm5vQ1ZmOWlVaDl6RTVZbFBWOGpaUmV2a0Etb2h3cXc?oc=5" rel="noopener">청해부대, 작전구역 확대..P-8, EOD도 보낸다</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832070&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">청해부대 작전 구역 오만 남방까지 확대…초계기 추가</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326725" rel="noopener">레임덕일까 매드독일까…중간선거 참패 이후 더 거칠어질 트럼프?｜빽투빽</a></h3>
+<p class="lead">미국 중간선거에서 참패한 트럼프 대통령. 민주당이 상·하원을 장악하면서 백악관과 의회의 정면충돌이 예고되고 있습니다. 공화당 내부에서도 이란전쟁과 강경 이민 정책, 고물가를 둘러싼 책임론이 터져 나오면서 트럼프의 정</p>
+<p class="meta"><span class="count">7곳 보도</span><span>SBS · YTN · JTBC 외 4곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (6)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832890&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&#x27;트럼프 참패&#x27; 소식에 이란 환호…&#x27;궁지&#x27;에 몰린 네타냐후</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE42Nk8wWmZRZk5YQWdoT3B1d1dRVEJUZ2psY0xPN05jNjE1Wms1VFhDNC1TRmJqWUQwTjROSFY5R3l1M0tkWFplbkVaNmh4U2R0THpQRGRkejdCTk0tM3c?oc=5" rel="noopener">공화당 대패 후폭풍...트럼프-밴스 &#x27;헤어질 결심&#x27;?</a></li><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590254.html" rel="noopener">측근 조사에 탄핵도 &#x27;만지작&#x27;…압승 민주당, 트럼프 일가 정조준</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1iYkVoUGFyNFloYlRGSUZZUVFKRjEwZDU1Rmk3aVJSbHR6TWxCMUhncVZuX3ZBZTRocVZlVF9YQXZWUmZNUUNMODFOWlgyVFYzdUpXbWpzM050RVFhXzhUU3FGN3hRZ1BEdVl2cVM3ckdheF8xUktYX9IBeEFVX3lxTE1SRjN4enE5cXdIdER4V0VuSF90TjNzMUtWTGhMbHN1Sko5S0xIYjJKM3huZi1mU01QOE9CY1FKSndVLTdxTDVjaHFIMGFhMXg2anBFbU9mdnJhc1hqZmoyNmpKV0NzN3pBcUYwTjI4bGJRSWJkT1A0Nw?oc=5" rel="noopener">&quot;전쟁 때문에 졌다&quot;‥트럼프 참패에 중동까지 &#x27;도미노 충격&#x27;</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE02d1c0c1RXaXVOVWlNLUoxWXRaQXB1a0QtLXM1cjlDUXpva0k2a0JnX2pnRldJYW8waF80aWJhM1VwdEk1ekRwVm5jWGZPS0RzWkdSM0I0ZGlIOG9icVHSAWNBVV95cUxONU0wTFpNMm9yOW10MXVfN0tkZ3pSWXlxMXFoSE9PYlNKdEpjWDRCZlh1LWtZXy0yUGt2NHRqbjI0MXJUUmh1VVhIRmphd3RqLWJfbkEzN1M3UThJMXJnUGJ6Y1U?oc=5" rel="noopener">트럼프 “날 탄핵하면 美 민주당 자멸”</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00008&amp;news_seq_no=5229288" rel="noopener">&quot;네 탓&quot; 트럼프-공화당 내분…&quot;2년 뒤 트럼프 없어져 낙관적&quot;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326667" rel="noopener">만취해 식당 돌진 &#x27;날벼락&#x27;…차 버리고 집에서 &#x27;쿨쿨&#x27;</a></h3>
+<p class="lead">평온하던 새벽 시간, 만취 차량이 가게 안으로 돌진해 식당 내부가 아수라장이 됐습니다. 만취 운전자는 사고 직후 차를 버리고 현장을 떠났는데요. 집에서 잠을 자다가 경찰에 붙잡혔습니다. 차에 신분증도 두고</p>
+<p class="meta"><span class="count">7곳 보도</span><span>TV조선 · KBS · JTBC 외 4곳</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (6)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590278.html" rel="noopener">&#x27;식당 돌진&#x27; 40대 만취 운전자…차 버리고 집에서 &#x27;쿨쿨&#x27;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9TNXU2eEpQWEwtTk9rTTdfdnJPanRwS1kteXBNWHEyWlhhOUxfOGdIT0lTdFBXQU94UTMyeUN6MldBMVZwN1czWGQtVEVMbWJIX011T0x3NUFObi1kMmVFLS1YYm13QQ?oc=5" rel="noopener">‘만취 운전’ 차량 식당 돌진…차 버리고 귀가해 ‘쿨쿨’</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5QeFByQ1hGQzBPSHQwX1o0OFhPeDNENEYzRTNTUTVzZF93ODdTUjJ4UTdnSnFRaU1KR0tRNXVSQnFWZTlMSHJydlBxX0sycThIbU1rU241MjB3UDdySmfSAWNBVV95cUxQeEdsZVZ6WXRIcWVEak1vZ2hTc0YtVlkyai1tM0UwV1FfTjZ3V3hhWE9pSmh4QkRuTF9DT2YyS1ZVTTIzNkR3LUtIVUdIQjBhZjRjbnJuMlFmQU4wR2hKMmhwNlE?oc=5" rel="noopener">만취 운전해 식당 돌진…차 버리고 집에서 ‘쿨쿨’</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832966&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">만취 운전하다 식당 돌진…차 버리고 달아난 40대 검거</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229298" rel="noopener">음주운전으로 식당 부수고는 집에서 쿨쿨</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1DSWctR0N6UlNjaEs4RHc1dE1ERGpXak80NFJZQ2xsX2RYWEZ4cldGVEFwOUJvcGRGTkRzSVk1YU9pS0RVdVUyT3YtVGRMMFdwZWVIdDVGOUc2VG5UVG4wYkJJb0ZJeVBibFdtX1VaNA?oc=5" rel="noopener">음주 외제차 식당 덮쳐...운전자는 차 버리고 &#x27;쿨쿨&#x27;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326705" rel="noopener">법원, 쿠팡 &#x27;개인정보 유출&#x27; 과징금 4천억원 부과 유지</a></h3>
+<p class="lead">쿠팡이 대규모 개인정보 유출로 4235억 원대 과징금을 부과받은 처분의 효력을 멈춰달라고 법원에 요청했지만 받아들여지지 않았습니다. 서울행정법원 행정4부(부장 김영민)는 오늘(5일) 쿠팡이 개인정보보호위원회(개보위</p>
+<p class="meta"><span class="count">7곳 보도</span><span>연합뉴스TV · SBS · MBN 외 4곳</span><span class="when">3시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (6)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH202611052119114c4" rel="noopener">법원, 쿠팡 개인정보유출 과징금 4,235억 효력 유지</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832844&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">법원, 개인정보 유출 쿠팡에 과징금 4천억 원 효력 유지</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229281" rel="noopener">쿠팡 4,236억 과징금은 그대로…법원, 시정명령만 일시 정지</a></li><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590238.html" rel="noopener">법원, 쿠팡 과징금 4천억원 효력 유지…3750만명 정보 유출</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5qa0NVVm5DcDh4eDVEZlFEQTRiODQ2VG40Q0dXekc4NHlBeHBqVlNWcy03d3hjRE94QzJ6WC1qNS13MWFfNmJsOTN4dHZCZXo5UkdaVTBrMjhfOUZZcnliV0xEcGtOYkhxRFFER2F6SQ?oc=5" rel="noopener">법원, 쿠팡 &#x27;개인정보 유출&#x27; 과징금 4천억 효력유지</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPaTlib29zWmlJVFA3YmtNTlZFQk96Qm1Tb0dUd1NzZ28tOXgycy1jc1Z0Y0phdkY5TEp2eWxvUHgzMWRJN3AwLXRiXzNZb0RtbW1QWFFfZWw4amtzZEJNWlNNbUx6MVFaSG05S0w3SzRWQ1BydjFZOFFpeDR1UWZudzJmMNIBY0FVX3lxTE9JczlORElneHBrSldoU2dtaXEzaXFzQXh5bkFVYmxMaDhhU0JmeG44aEFrOXQwNzMtTE5hUXlSZjZiTThqOFZjb1lLNklsNDF3d011Ym9nVFF5NVY3cy13Wmxqbw?oc=5" rel="noopener">[속보]법원, 쿠팡 ‘4200억원 과징금’ 효력 유지</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326658" rel="noopener">청와대, 미 중간선거 결과에 &quot;한미동맹, 초당적 지지로 굳건한 관계&quot;</a></h3>
+<p class="lead">청와대는 미국 중간선거 결과와 관련해 &quot;한미동맹은 70년 이상 미국의 초당적 지지를 받으면서 굳건히 발전해온 관계로, 특정한 선거 결과가 한미동맹에 영향을 미치지 않을 것으로 본다&quot;고 밝혔습니다. 강유정 청와대 수</p>
+<p class="meta"><span class="count">6곳 보도</span><span>연합뉴스TV · SBS · 채널A 외 3곳</span><span class="when">20분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (5)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH20261106000039G4u" rel="noopener">靑 &quot;한미동맹, 美 선거 결과 영향 없을 것&quot;</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832807&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">청와대, 미 중간선거 결과에 &quot;한미동맹은 초당적 지지 속 발전해온 관계&quot;</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE81SmJGUjdTV01NVUd0enM5ZGpvVXA5allHV1drdElxVldLZm8wcW1RZzdJMlI1ZnhmREowZXh6eDBVUDQxdWo4MjlnUWtRSEtEQjczR2kzYXN5WmxHVDFOLVp5Z9IBY0FVX3lxTE81SmJGUjdTV01NVUd0enM5ZGpvVXA5allHV1drdElxVldLZm8wcW1RZzdJMlI1ZnhmREowZXh6eDBVUDQxdWo4MjlnUWtRSEtEQjczR2kzYXN5WmxHVDFOLVp5Zw?oc=5" rel="noopener">청와대 “미 중간선거 결과, 한미동맹에 영향 없어…대미투자 지속”</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229256" rel="noopener">&#x27;미 중간선거&#x27; 결과에…청와대 &quot;한미동맹 영향 미치지 않을 것&quot;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zLXpPOGlSdkVoTzVqRW10dXBVY2FHVUJYRGd6TWJlMWI1cFhnY1ZzNmNmVUNuOWRFNVQ4LTE5TXhhdjlsc3hSRzRucnBQaHBsZVJIMGM4eFphUlk?oc=5" rel="noopener">청와대, 미 중간선거 결과 관련 “한미동맹 초당적 지지…의회와도 긴밀 협력”</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326730" rel="noopener">이 대통령 장남 &quot;한산대CC 안 가&quot;…주진우 의원 명예훼손 고소</a></h3>
+<p class="lead">이재명 대통령의 장남 이동호 씨가 가족의 &#x27;황제 골프&#x27; 의혹을 제기한 국민의힘 주진우 의원을 명예훼손 혐의로 고소했습니다. 5일 법조계에 따르면 이 대통령의 장남 이동호 씨는 이날 주 의원을 명예훼손 혐의로 서울경</p>
+<p class="meta"><span class="count">6곳 보도</span><span>TV조선 · JTBC · YTN 외 3곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (5)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590307.html" rel="noopener">李대통령 장남 &quot;골프장 간 적 없다&quot;…주진우 명예훼손 고소</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1jOWJXamJ6cGhHUUlNUDRXUzdmQnR3SnV1LXpaOTRrSGZzRmVETFBwaHF4Y1ZYclh6TUpZcHlrUUtwb3NEWHR1RDdvS1k1blFNWUJtWXRzemw2empsMlE?oc=5" rel="noopener">이 대통령 장남, 주진우 명예훼손 고소...&quot;골프장 간 사실 없어&quot;</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229324" rel="noopener">이 대통령 장남, &#x27;황제 골프&#x27; 의혹 제기한 주진우 명예훼손 고소</a></li><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/AKR20261105205602ygB" rel="noopener">李대통령 장남, &#x27;황제 골프 의혹&#x27; 제기 주진우 의원 명예훼손 고소</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1LdjJEd3o5bXZsODFhQlpxckRHdkFHRDR3ZWhMNXJqRFVQMkdvcmRZdXkwXzlwRDBEazhRSmNoLWVIQndhMHA2ZVdrWEJaUnlSd3J4aDBhbWlwSDA3c2EtVmVIdFJYdGRUSGhBTEU1ZzlGbm9wc2U4d9IBeEFVX3lxTE1XQ180ZWN3cWtJMGhOY09zX3ctLS0yQUJTcjVVVmZUY0ZudGhRU2pBSU0yM2d2UDNWNVNOTHVpLUNJdjNOdUpyX09jc2p1SGFES2ZHdGkyTDRfdEZZTDdGZjBHZ2VqQ003NUpZeXVDa3BxQmJBWU1KVQ?oc=5" rel="noopener">[단독] 이 대통령 장남 &quot;골프장 간 적 없어&quot;‥주진우 명예훼손 고소</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326645" rel="noopener">&quot;전두환·윤석열 내란 아니다&quot; 발언 김태규…국회 &#x27;제명 촉구&#x27; 결의안 통과</a></h3>
+<p class="lead">&#x27;내란 부정&#x27; 발언으로 논란을 빚은 국민의힘 김태규 의원에 대한 제명 촉구 결의안이 국회 본회의를 통과했습니다. 국회는 오늘(5일) 본회의에서 범여권 주도로 김 의원 제명 촉구 결의안을 의결했습니다. 투표수 167</p>
+<p class="meta"><span class="count">6곳 보도</span><span>SBS · MBN · JTBC 외 3곳</span><span class="when">3시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (5)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832545&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">국힘 김태규 제명 촉구 결의안, 범여권 주도 본회의 의결</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229255" rel="noopener">&quot;전두환·윤석열 내란 아니다&quot;…국힘 김태규 제명 촉구안 의결</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1DeEJRbHllZTZMeUpGUlVNZDA1WVd2UG1PNXJUb0FxQWszMDJ5ZV9kcmFVRVdYOUQyWFdxSmVINkQ3MFNCOG9jXzdPX25WM1BBV0VxWDZMSi1NUG9sZG5rV0llX1hXWXpqYXdSYV9Kbw?oc=5" rel="noopener">[속보] &#x27;내란 부정&#x27; 김태규 제명 촉구안 범여권 주도 본회의 통과</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBPdXBjbS03NHFYblFJdWJNeU9YZk5ud09lNmt5RFo4empnZHE2bXRLa2JKRGdSR1piMzlqaUE5WHlJOUJSbUdPUEN1aTBaelNucnhlYU9CclY3c25vYXfSAWNBVV95cUxNU1htakl1NFZBdmNMdkVQak5OT0VuSk04MVlZdXFOUGZxY1M3S1VYVENrMGYzU1dvSXoyOF9qOXdEcC1sdnBGRDdOUFNvU0NUSkc4RW1CWVRWX0NXbnlIcVpWR1U?oc=5" rel="noopener">‘전두환 내란부정’ 김태규 제명촉구 결의안 국회 의결</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE03MVlSRG50V1dxTWJfMDlycGJYZGhjTFdPZGNJVVZEWXR4MVNaZTM1eGxwbW5WMjhENnB5U0tYczVRTGh4Q0QxM3JLYTNWbVUtbHdDNHlhMFZiOHM?oc=5" rel="noopener">‘전두환·윤석열 내란 부정’ 국힘 김태규 제명 촉구 결의안 여권 주도 국회 통과</a></li></ul></details>
+</article><p class="next"><a href="#weather">다음: 날씨 ›</a></p></section>
+<section id="weather" aria-labelledby="h-weather"><h2 id="h-weather">날씨</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326611" rel="noopener">오늘 전국에 추위 부르는 가을비…내일부터 찬 바람, 모레 영하권으로 뚝</a></h3>
+<p class="lead">오늘까지 전국 곳곳에 가을비가 내린 뒤 내일부터 기온이 점차 떨어져 추워지겠습니다. 현재 남해상을 지나는 저기압의 영향으로 곳곳엔 비가 내리고 있습니다. 제주 전역엔 강풍주의보가, 남해 먼바다엔 풍랑주의보가 발효중</p>
+<p class="meta"><span class="count">9곳 보도</span><span>연합뉴스TV · TV조선 · SBS 외 6곳</span><span class="when">45분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (8)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105233554e3y" rel="noopener">찬 바람 불며 기온 &#x27;뚝&#x27;…주말 영하권 추위</a></li><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590300.html" rel="noopener">6일부터 기온 &#x27;뚝&#x27;…주말 &#x27;입동&#x27; 영하권 추위</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832931&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">내일 중부 &#x27;체감 영하권&#x27;…옷차림 유의</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE9BQWR0UUEtUmFiMmJhYi12VDNHeS1OcHh5bjRMa21UVV81VE5GNllkOUVMdDR3ME1uazJVUXB3UVNjT0lQaWZEdkU4ZFZaelI2MnNqRWZfT3VEMnJPRGUwVjhYd05pSjBFcEgxcWllVnlhczRNc2JON9IBeEFVX3lxTE9DN2Vud2NPV3VVdm54S0VZMnBlb1J0cmN2UWNmeWl0NmlBU2tHVmlpa0hrTnRKSGlsWlRZS1NMR0V2dDFhcXJhZ1FDcFZkZ1RuWTRCOG1pX0wtTl9xbjljMmVET1VQa1Fpdm5qTGtBTHN2QktqU2JpeA?oc=5" rel="noopener">내일부터 찬 바람 &#x27;쌩쌩&#x27;‥주말 올가을 가장 춥다</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1sVkhtQV92WEh2Z3BXbjZ1U3lFcllfcjRlT0lYX3ZqdkU4QVhHelhPTjR4Q1E3VTYycWZpN1o3ZUlSQll5MU42dTlIOHpZOUlCSkZhX0p4Vmk2Z3Q1U2RSeXpWVdIBY0FVX3lxTE1sVkhtQV92WEh2Z3BXbjZ1U3lFcllfcjRlT0lYX3ZqdkU4QVhHelhPTjR4Q1E3VTYycWZpN1o3ZUlSQll5MU42dTlIOHpZOUlCSkZhX0p4Vmk2Z3Q1U2RSeXpWVQ?oc=5" rel="noopener">진짜 겨울 시작…주말 서울 첫 영하권</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229317" rel="noopener">내일부터 다시 추워져…모레 서울 영하 1도</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9iZ0xrQVZvS1hQd01fOHdfREhuaEgxLXd6NHBmb3lTc05KUzcyWWNfLWI2REFjUGFpLWxzMlA3VlNxbjdmSDZVbzZtR3V5eEY1M0RhUHFaUThnTXpUelE?oc=5" rel="noopener">낮 동안 선선한 가을...밤사이 찬바람, 내일 기온 &#x27;뚝&#x27;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBrcHZJZ1MxTmc0LXlra1JMd0tfdmM3SVVoVjNUM0FtZkMxV1ZVQWdHNWNZLVpPZ196eFZlUlpHRXE2cnFHNXQtYUQtbl9CeTlDZHJkU3A3aFk5bXc?oc=5" rel="noopener">강원 곳곳 오늘~내일 비…내일부터 다시 추워져</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326540" rel="noopener">전국 비, 남부 최대 40mm…낮 최고 12~20도</a></h3>
+<p class="lead">오늘은 전국적으로 비가 내리겠습니다. 예상 강수량은 남부지방 5에서 40mm, 그 밖의 지역은 5에서 20mm 안팎입니다. 아침 최저 기온은 서울 10도 등 전국이 6도에서 15도의 분포로 어제보다 높겠습니다.</p>
+<p class="meta"><span>JTBC</span><span class="when">15시간 전</span></p>
+</article><p class="next"><a href="#politics">다음: 정치 ›</a></p></section>
+<section id="politics" aria-labelledby="h-politics"><h2 id="h-politics">정치</h2><article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/AKR202611051930324ON" rel="noopener">北 어선, 울릉도 해상 표류 중 발견…&quot;관계기관 조사 중&quot;</a></h3>
+<p class="lead">北 목선 표류 (CG)[해당 사진은 기사와 관련 없는 자료 사진입니다][해당 사진은 기사와 관련 없는 자료 사진입니다] 지난 3일, 북한 어선 한 척이 울릉도 북방 해상서 표류하다 우리 군과 해경에 의해 발견된 것으로 확인됐습니다.</p>
+<p class="meta"><span class="count">4곳 보도</span><span>TV조선 · MBN · KBS 외 1곳</span><span class="when">3시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590305.html" rel="noopener">울릉도 인근서 표류 북한 어선 발견…당국 조사중</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229318" rel="noopener">울릉도 인근서 북한 어선 표류…당국, 검문 뒤 조사 중</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9KVFpJV2hIeU5ZS3JXTVk2QWlXOHhQNkYta0wtZXI3dmExOEVzSE1FRktrY0N4SHFQV2E2aHppRV9ncHJlOVJNX0tQQ0dNZHhtREhYbWFsbTR5Mzg?oc=5" rel="noopener">울릉도 공해상 표류하던 북한 어선 발견…당국 조사중</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326602" rel="noopener">&#x27;신천지 집단가입&#x27; 조사 결과 내일부터 개별 열람…친청계 잇단 신청</a></h3>
+<p class="lead">더불어민주당이 신천지 교인의 당원가입 정황 등을 조사한 당원정비TF 결과를 내일(6일)부터 지역위원장들에게 개별 공개합니다. 최민희·한민수 의원과 이지은 지역위원장 등 친청계 인사들이 열람을 신청한 것으로 전해졌습니</p>
+<p class="meta"><span class="count">4곳 보도</span><span>채널A · MBN · JTBC 외 1곳</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE4wVm5YRjVpZ0lmSzhlVG1JdWtub0NBTjlybFRIZXc1UnAzcFJUOHYzLUMzdzRXRFBnOC05R3cyb0lxbEEwTXdLWlBBSy0wVk8wejJTTDg5aDhmNHI5cmdlOUhRRdIBY0FVX3lxTE4wVm5YRjVpZ0lmSzhlVG1JdWtub0NBTjlybFRIZXc1UnAzcFJUOHYzLUMzdzRXRFBnOC05R3cyb0lxbEEwTXdLWlBBSy0wVk8wejJTTDg5aDhmNHI5cmdlOUhRRQ?oc=5" rel="noopener">6일부터 신천지 당원수 열람…김민석, 우회 반격</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229302" rel="noopener">신천지 개별 열람 안내…김민석 &quot;전면 공개하면 더 큰 문제&quot;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE15QmpnbXRNdnZxLWtzN2tCTGpLVnRBNEtHSHlVU29zbzVTb0NwSWdSWmstYTdWcGZVZmprODdvYXJyUW1pcjhXdk9rclFIWHcyNVpIc0o5T0RRWjA?oc=5" rel="noopener">민주당, 내일부터 ‘신천지 의혹’ 조사 결과 한시적 열람 허용…국회의원·지역위원장 신청자만</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590274.html" rel="noopener">&#x27;SNS 논란&#x27; 속 李, &#x27;대통령의 Y&#x27; 유튜브도 시작…여야 모두 &#x27;우려&#x27;</a></h3>
+<p class="lead">SNS를 통한 직접 소통을 넓히고 있는 이재명 대통령이 유튜브 방송까지 시작했습니다. &#x27;대통령의 Y&#x27;란 대담 프로그램인데, 조금 전 첫 방송이 시작됐습니다. 소통창구를 늘리겠다는 취지라는데, 여권에서조차 우려하는 시각이 적지 않습니다. 왜 그럴까요?최민식 기자입니다.</p>
+<p class="meta"><span class="count">3곳 보도</span><span>연합뉴스TV · TV조선 · MBC</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105230516myr" rel="noopener">李, 유튜브 통해 ‘직접 소통’…‘대통령의 Y’ 대담 신설</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5KdFU2UmhSUUZxenUwb0taejJTQmJxdnl3eGFrcjNUVjlYN1F3TjdpaFR0LW1IdHJMYTh4bEkzMk14czB2MF94RmtuOTEzdXhoYUdCd1pkczd6UUg1TjA1aUFEUDJOMm13b3BpYlJCejVWSlVKckF1Q9IBeEFVX3lxTE1hUEs2UzBQdE03YlNEOExQQ24xSEgzLThfdXI0Q3d1Uk92elZ5bHZPTDlodkNNQmVydmlZYV9xWWNSVnpMWE1pMl9jWUpSNlVXbFpBOTJWNDllVDFKYjJpMmRybWI4ZGJFQ200NFlWcWFkRnpDNWE3Tw?oc=5" rel="noopener">대통령 유튜브 오늘 첫선‥&#x27;언론 불만&#x27; 직접 돌파?</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105210213gZx" rel="noopener">野 중진 &quot;한동훈 복당 추진해야&quot;…韓 &quot;순리대로&quot;</a></h3>
+<p class="lead">국민의힘 중진 의원들 사이에서 무소속 한동훈 의원의 복당을 추진해야 한다는 목소리가 잇따라 나왔습니다. 4선 김태호 의원은 SNS를 통해 &quot;분열은 무능이고 통합은 책무&quot;라며 &quot;한 의원의 복당을 대승적으로 추진해야 한다&quot;고 주장했습니다.</p>
+<p class="meta"><span class="count">3곳 보도</span><span>연합뉴스TV · 채널A · MBN</span><span class="when">3시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1Lem4wNHpaU3RneTNrRU91b3V2Q3FmbkFMZW40bWF4YXJ0ZGF6bjcwZU5mZHQxUDFtUUdQRGRfUWYxempSR2FpMDRGbk5QY0o2Y3hTMGF5bmJUSWtPbjZKTUxJMNIBY0FVX3lxTE1Lem4wNHpaU3RneTNrRU91b3V2Q3FmbkFMZW40bWF4YXJ0ZGF6bjcwZU5mZHQxUDFtUUdQRGRfUWYxempSR2FpMDRGbk5QY0o2Y3hTMGF5bmJUSWtPbjZKTUxJMA?oc=5" rel="noopener">국민의힘, ‘한동훈 복당론’ 충돌…“추진” vs “분열”</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00006&amp;news_seq_no=5229270" rel="noopener">&#x27;한동훈 복당&#x27; 군불 때는 국힘 중진들 &quot;지도부 결단해야&quot;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326661" rel="noopener">민형배 출판기념회 연설한 카페 대표…호남 반도체 6조 지원금 심사</a></h3>
+<p class="lead">호남 반도체 클러스터 지원 예산을 심의하는 정부 위원회에 디저트 카페 대표 등 반도체 비전문가들이 민간위원으로 위촉된 것으로 확인됐습니다. 산업통상부가 국민의힘 구자근 의원실에 제출한 자료에 따르면 지원위 &#x27;산업 분</p>
+<p class="meta"><span class="count">3곳 보도</span><span>TV조선 · JTBC · 채널A</span><span class="when">3시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590306.html" rel="noopener">민형배 출판기념회 연설한 카페 대표가 호남 반도체 6조 지원금 심사…총리실 &quot;다양한 분야의 전문가 구성&quot; 해명</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE5RenpQZThTRTFyU01zejN2UkZNTE5EUVdsaWR1OWZwVC1KR3JERVlvczlLWDBCNzdkTWJSRkpxbDZzOEt6OFVwVTIxdmdOSFFjVEduZm9VVUhkUWxsS3fSAWNBVV95cUxOYTdncGgzaHVSOVFaa2o1ZUZqRDk1dEZEQ0tQWlRubllFSk1GOFluOHlzYUpYYVR4bXYwX09rRWtGU3pUdUZDdmFLcXpub2lpS0tFR1BVZnkwOW8zbjJfdUNacDQ?oc=5" rel="noopener">‘호남반도체 6조’ 심의 민간위원으로 카페 대표·정형외과 의사</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326663" rel="noopener">특전사에 등장한 &#x27;패션모델&#x27;, 웬 워킹 수업?…&quot;북한은 미사일 쏘는데&quot; 비판</a></h3>
+<p class="lead">육군 특수전사령부 예하 부대가 지난달 29일 패션모델을 초청해 장병들에게 모델 워킹과 포즈를 가르치는 행사를 열어 논란이 일고 있습니다. 박충권 국민의힘 의원은 어제(4일) 페이스북을 통해 &quot;북한이 지뢰 도발과 탄</p>
+<p class="meta"><span class="count">3곳 보도</span><span>채널A · JTBC · YTN</span><span class="when">5시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1EN0wwMDdoMjVtTmZuZmFfaG9CX3I2Nk84TUJRQWVmRXc2bHB1TTBULV9oeGNaWjJWdnhHcWliOFEzeWhwbG9ucVU5STNoaXdEMDRyZjBlM2kwMGhTTFHSAWNBVV95cUxQZ2xPWUFtOEpiNE9nSEVkUFFPRUtjLVZmSEt1NWhmUzNQOGR4VzZCbXFXSUszVGtzNU01ajdaUzh1bXB5dHg5Z2RVRk93OXNLX2RjckcxeGRYRHRwTDR6QXdPTkU?oc=5" rel="noopener">특전사에 모델 워킹 교육?…협회, 추가 영상 공개하며 반박</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9iei12QXY3VEx3b2F2ZzZZZkthcXFHWlRwc2E0Z3pBYndKRVhxQ0ZmelhUYmhZTTYxS01wWVg0akpjOTlKVmFIVjY1YXNGWmF6WkdYdVZTR1E2TU9ReHc?oc=5" rel="noopener">&quot;북한은 미사일 쏘고 있는데...&quot; 특전사 &#x27;모델 워킹&#x27; 교육 논란</a></li></ul></details>
+</article><p class="next"><a href="#economy">다음: 경제 ›</a></p></section>
+<section id="economy" aria-labelledby="h-economy"><h2 id="h-economy">경제</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326640" rel="noopener">미 &#x27;블루웨이브 쇼크&#x27;에 코스피 300포인트 &#x27;뚝&#x27;…삼성전자 7%·SK하이닉스 9%대 급락</a></h3>
+<p class="lead">미국발 &#x27;블루웨이브 쇼크&#x27;에 코스피와 코스닥이 나란히 5%대 급락했습니다. 한국거래소에 따르면 오늘(5일) 코스피는 전 거래일보다 300.00포인트(5.28%) 내린 5383.80에 거래를 마쳤습니다. 지수는 1</p>
+<p class="meta"><span class="count">6곳 보도</span><span>SBS · MBC · YTN 외 3곳</span><span class="when">7시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (5)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832503&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">코스피 5,300선 &#x27;털썩&#x27;…코스닥 동반 매도 사이드카</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE0zdjBqTzZ1TVhPVEd5Q2ZWc0xscTNOb3lMR1VCX3AwTHRhRl84Um9UWkZ1MGluemtZRng5bzhVUzVGdUtIYjFWM0FlMnJzODg2bUpHaTNXRjkycF95U00tV1YzNXRfaF84WkYzNUpTNjhwYWpDVk42UdIBeEFVX3lxTE1aVEpKYmFOYW9wMnNxR0VmNHdJY0dDbUZkaGJwcWVxZGhGX0xpbEhBRjdMQ0JWUlpoVDhiXzdXRkl5WXExaERtXzY2U3dZUEhmMngxVDFrSXlTVHJyT1ZNb3QwVG1Hd3NuOUxJLW5UOUpLbi11WWczXw?oc=5" rel="noopener">미 중간선거 여파에‥코스피·코스닥 5%대 급락</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE5oQnNIY281czViSkdQakRiUFUta2JKSGZodERPUTBLcFl4ZUVRdjZobWJEVXNKV202eDlCd2Z1RUtuNVc5Qk9HQlJ5LXhCQ19DRkQ2a1FoaEpCY3c1T3RIZ0s2Q25DMTAzRGFWdnVxNA?oc=5" rel="noopener">&#x27;20만 전자&#x27;까지 위협받은 코스피...코스닥도 &#x27;매도 사이드카&#x27;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1TRGlTNW1UbzlGT2NZMmQtRWQ3NDE0RTNVM003cWQ0aG5xSjgxd29LUzI2X25QR21WYTM3anVHS3BGMnpTbXBtQXR6WWUwd1FyZlhkRFZsWEFPVUU?oc=5" rel="noopener">코스피·코스닥지수 5%대 하락…반도체주 ‘급락’</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00003&amp;news_seq_no=5229195" rel="noopener">[속보] 급락장에 코스피 이어 코스닥도 매도 사이드카</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326714" rel="noopener">가상자산 과세 네 번째 유예, 2020년 법제화 이후 제자리…청년 부정 여론 의식?</a></h3>
+<p class="lead">내년 1월부터 시행될 예정이던 가상자산 과세가 또 미뤄질 전망입니다. 정부가 과세 시점을 2년 늦춰 2029년부터 시행하는 방안을 추진하기로 했습니다. 2020년 과세 제도 신설 후 시행을 미루는 건 이번이 4번</p>
+<p class="meta"><span class="count">5곳 보도</span><span>연합뉴스TV · SBS · JTBC 외 2곳</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (4)</summary><ul><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/MYH202611052217257ae" rel="noopener">가상자산 과세 네 번째 유예…손실 3년 이월공제</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832905&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">코인 과세 또 2년 유예…&quot;벌써 네 번째&quot; 과세 원칙 &#x27;흔들&#x27;</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00003&amp;news_seq_no=5229271" rel="noopener">&#x27;가상자산 과세&#x27; 4번째 유예…이 부총리 &quot;2029년에는 시행&quot;</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oeEwybU5yN2FtZXk1d2pRckg3THNMNGpId3lWSkNSeXA5Rm9lT2VDdVFXNFJEcXNMMGRpQkhCTDhRLXc5UldTYTZLekpnZE05c0hBM0NhMzFsRmxrOXlZaERqRdIBY0FVX3lxTE5oeEwybU5yN2FtZXk1d2pRckg3THNMNGpId3lWSkNSeXA5Rm9lT2VDdVFXNFJEcXNMMGRpQkhCTDhRLXc5UldTYTZLekpnZE05c0hBM0NhMzFsRmxrOXlZaERqRQ?oc=5" rel="noopener">정부 “가상자산 과세 2년 늦춰 2029년부터…손실 3년 이월 공제 추진”</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105201406hSb" rel="noopener">다문화 부부 0.9%…&#x27;한남일녀&#x27; 부부 증가세</a></h3>
+<p class="lead">지난해 결혼한 100쌍 중 9쌍은 다문화 부부인 것으로 나타났습니다. 국가데이터처가 오늘(5일) 공개한 &#x27;2025년 다문화 인구동태&#x27; 보고서에 따르면, 지난해 다문화 혼인은 2만 1,399건으로, 전년보다 51건 감소했습니다.</p>
+<p class="meta"><span class="count">4곳 보도</span><span>연합뉴스TV · MBN · SBS 외 1곳</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00003&amp;news_seq_no=5229306" rel="noopener">작년 혼인 부부 100쌍 중 9쌍 &#x27;다문화&#x27;…혼인·출산은 감소</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832324&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">작년 혼인 부부 100쌍 중 9쌍은 다문화…출생아 비중은 5.2%</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE45TGxpSWxsQzBzemNud3BtcmhXcHFUcDNtSDgxSkpXU2NKWUI2TDRGU2wtbDJYaUhqSGswajFWYmNGaWlEZDRCS1h3MjZxTF92OVM1amtnRGxvT0NJX2c1bmdnMjl3MGY2Zko0SkFacFJ1dF9PMHc?oc=5" rel="noopener">지난해 혼인의 8.9%·출생아의 5.2%가 다문화</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326544" rel="noopener">텍사스·캔자스까지 파란 물결…민주당, 상·하원 모두 탈환</a></h3>
+<p class="lead">&#x27;파란 해일&#x27;이 미국 중간선거를 휩쓸었습니다. 공화당은 상·하원 다수당을 모두 빼앗기며 역사적인 참패를 받아들여야 합니다. 텃밭이었던 텍사스에선 주지사에 상원의원까지 모든 공직 자리를 민주당에 빼앗겼습니다</p>
+<p class="meta"><span class="count">4곳 보도</span><span>MBC · JTBC · SBS 외 1곳</span><span class="when">7시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5Pa2NLeGppTDBSSFA5X2ZIQXd2bF9YNlg5MHg1LWhsWE1tc3BCYm0ybkYya19XMEttcWpWR3RCYVdrY2JIME1Qa1U2ZlBIMEF3alJEZmRsV0g2dmpuSlBMcG50dF9tMXlHSkhaV3FNNTRMTkF5XzNPbNIBeEFVX3lxTE1CdHRLS1QtbTQ4NUlBUUM1TVMwWW9FSlZDSWJ5M0t4VTd0NWYxY3BlV0lINVhlMTcwQ0h0aXdkTjAtS2JEd3h5NVRhUkQ0anJOSU1TUTVDZWFYOGN6M3NNT2ZCeDZrcC14SlZ4TnpGc1NLNGo0WkxfaA?oc=5" rel="noopener">민주당 압승 예상에 급등했던 지수, 다우만 상승세 유지</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831257&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">중간선거 민주당 압승…증시 &#x27;상승세&#x27;</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1JQ1g1cUREbkttTTl5bjhDc3VjaEhhcXdOa0ItUHJYQjM2cy1CUlVvbG11SHhaRXhWVnlTNU9wSWFEbURXTHhJWDl3LXpSVDFOTDdNTGlTc0JwbVAtc0E?oc=5" rel="noopener">&#x27;블루쓰나미&#x27;…민주당 상·하원 모두 압승</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105171603WEE" rel="noopener">금융권 정보유출 47만건…10억 원 자금 탈취도</a></h3>
+<p class="lead">최근 금융권에서 잇따라 발생한 해킹 사고로 현재까지 47만 건이 넘는 정보가 빠져나간 걸로 확인됐습니다. 일부 업종에서는 10억 원 규모의 자금 탈취도 있었습니다. 금융당국 주재로 전 금융권이 모여 보안 체계 혁신 방안을 논의했습니다. 이다현 기자입니다.</p>
+<p class="meta"><span class="count">3곳 보도</span><span>연합뉴스TV · MBC · SBS</span><span class="when">7시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5DT2xBamI4bVRoRld6bHFGd1BtVG9nRDZ3V1FMWEpOSDFZYWZucFpQTl9nTGNONE9PVlY2WjlaUVJJcFhJX0lscUFpaVYzeVlhY2I5d3ZHZXhyQU5MM2Q0d1RKbDZwWVBhVDN2b28tNlh4bDF0aWhqa9IBeEFVX3lxTE5xeUZlQXEzU0RQcUN1bEZ2QWtRMW1SSjQ0a3RYWW5NRDRFR2lqTHVEZnJ4V2JPbk1VMzlObUoyclJpNElYVnlocXhsUFVUbkpVV1dUeWtlT21PWVlaVmtmT3FJamVUeG1YeHZhWDBIcVR3aENUWGh5Rw?oc=5" rel="noopener">&quot;한 달 새 금융권 해킹 37곳‥47.3만 건 유출&quot;</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832287&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">37개 금융사 정보 유출 47.3만 건…10억 원 자금 탈취도</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH202611052306263Tw" rel="noopener">서울 아파트값, 91주째 상승…오름폭 3주째 둔화</a></h3>
+<p class="lead">서울 아파트값이 91주 연속 오르며 역대 최장 상승 기록을 이어가고 있지만, 오름폭은 3주 연속 줄었습니다. 대출 규제와 증시 변동성 여파 때문인데, 강남 3구 아파트값은 이번 주에도 떨어졌습니다. 구하림 기자입니다. [기자] 11월 첫째 주 서울 아파트값은 0.07% 오른 것으로 나타났습니다.</p>
+<p class="meta"><span class="count">2곳 보도</span><span>연합뉴스TV · TV조선</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590240.html" rel="noopener">&#x27;역대 최장&#x27; 서울 집값 91주 연속 상승…강남 3구 하락폭 확대</a></li></ul></details>
+</article><p class="next"><a href="#society">다음: 사회 ›</a></p></section>
+<section id="society" aria-labelledby="h-society"><h2 id="h-society">사회</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326712" rel="noopener">&quot;집에서 흉기 챙겼다&quot;…의사 공격한 여성 &#x27;살인미수&#x27; 적용</a></h3>
+<p class="lead">어제 서울 신촌 세브란스병원에서 벌어진 흉기 난동 사건은 범행 동기가 분명하지 않습니다. 50대 가해 여성은 진료 예약도 하지 않았고 다짜고짜 진료실에 들어가 집에서 챙겨온 흉기를 휘두른 것으로 조사됐습니</p>
+<p class="meta"><span class="count">5곳 보도</span><span>YTN · JTBC · 채널A 외 2곳</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (4)</summary><ul><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE9RdlZycUdpNkpCNzkzMFBiOUhwYWhlQjc4NHU5Mkgwak9wSVlZMi1uWm9RX2ZzSVE4aktfT2RyVXhabUJsVlBJS1RPMDVCSjFWdzlEdk9JRXUxS3NydmI5Q2M4TnhRaGNTNlBoa191bw?oc=5" rel="noopener">의사에 흉기 50대 살인미수 구속영장...진술 &#x27;횡설수설&#x27;</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9NNzF4Z2NiV1BRRDdKNVFaeUY4d1MtVWtlaDRPU0wzY01DSnAyVmRIb2IwWkZ0Y2picERwelFfZGNOTHNWMWZQS1o1SlRkWGZDVlpjSmdJWml3ekJ3WkpGUEdCVdIBY0FVX3lxTE9NNzF4Z2NiV1BRRDdKNVFaeUY4d1MtVWtlaDRPU0wzY01DSnAyVmRIb2IwWkZ0Y2picERwelFfZGNOTHNWMWZQS1o1SlRkWGZDVlpjSmdJWml3ekJ3WkpGUEdCVQ?oc=5" rel="noopener">[속보]경찰, ‘세브란스 병원 흉기난동’ 50대에 구속영장 신청</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE1tRWd6cnBkQ3NHM01fU3o4RmJ0NHpYNmxDelBlOWlRLXFSNEpQckQ0MnV1RDNBWnZwVzF5RXN3cVRFNkZVMkFUa2t3NlZUcjR1dnBnYlktbUQtTzFqVWxqd3E1Z1RIQQ?oc=5" rel="noopener">신촌 세브란스 ‘흉기 습격’ 50대…“원래 다른 병원 가려고 했다”</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTFBaODBfNlJYc1g4UkZsM1piTUVlYmdnZFJaZnZSWWdsTHV0RTlNZmNFS3d1U0tVT09NMk9lOFp2LWN3cHRlaDNfU1ByMDE2ZTVEb25ibVBmajI1SUJkTWEtcnljNmVTSnE0OHljYkk2YTZYdVhEZHhkNtIBeEFVX3lxTE14aUx5UzE2bjZxYmptQ1dfM3dpUjVNVU5JZDFjX0F1VE8xM0hETmFZTnd6eDZVcy1tLWdBZXpPaVBtYVBhVV9ZbUFhTWFncFZ0eGozc2xoWFV1dkViajgxTHJKZ3JjbmMxY0lRUWJpNjR3QWpXSE52dg?oc=5" rel="noopener">세브란스서 흉기 난동‥&#x27;살인미수&#x27; 구속영장 방침</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/AKR20261105184057zm3" rel="noopener">세월호 참사가 남긴 기억…유네스코 아시아태평양 기록유산 등재</a></h3>
+<p class="lead">세월호 인양 후 뻘에서 발견된 수학여행 일정표[국가유산청 제공. 재판매 및 DB 금지][국가유산청 제공. 재판매 및 DB 금지] 2014년 세월호 참사의 고통과 회복의 과정이 담긴 기록물이 유네스코 세계기록유산 아시아태평양 지역 목록에 등재됐습니다.</p>
+<p class="meta"><span class="count">4곳 보도</span><span>SBS · MBC · 연합뉴스TV 외 1곳</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008833035&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&#x27;단원고 4·16 아카이브&#x27; 등 2건, 유네스코 아태지역 기록유산 등재</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE9QamhGZmtuS3k4eWx4di03cER4N3N2UFEtYi13WlItcUo1U3NhSFBQckZBMlZyaUJndk5PUFB2X2Q3NGltNXNCZmsxb2VJUjA4NHBwUDV3akxsR0tFdVdNLVhUck5NQmw5NVJPTk9kN0kybGNZSHRneNIBeEFVX3lxTE1zLXNsUzNQMFMzTkgzX2pMNzRYZV9PSlJHbW1ZQUdiTkNOVnRpQnFldzNIaHV4Ri1HcnNNbko2TGZNQmlrUEJXVHBTQXFkOXFpYTQ1YS1VVE13ZnRSVFpVM0FWbGNsR3UwMlpKOTdLTEpKUkwyWkZCUg?oc=5" rel="noopener">손글씨로 남은 &#x27;수학여행&#x27;‥단원고 기록, 아태 기록유산 됐다</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE10eXJzMXNtQk10cXM0bU1RbFhiZlkySDY5Q3F5amRncTlZelVKZFdORGFlVHZnLTNVdjE4Y2hHb3l5ekRNbW50N3ZXcUUzZ2ZwQ3dIdmxrS2NPamp0OEHSAWNBVV95cUxOR0l4UWx1Z0xxZVZ2MkNFSjBQb1JfVzhHeTY3WTBXYkpJclB1cV9qcVRMUzdfMEs3S0QxMHNPUkJucFBWYU9UbXhPa1FOQjJ0VUt3R2w2QV9yMm5SV21uUHJjV1U?oc=5" rel="noopener">세월호 아이들 기록 23만점, 유네스코 아태 기록유산 됐다</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326641" rel="noopener">초5 아이에게 &quot;XX놈아, 손 내려!&quot; 휴대폰으로 퍽퍽…태권도장 관장 입건</a></h3>
+<p class="lead">경남 진주의 한 태권도장 관장이 초등학생 제자의 머리를 휴대전화로 여러 차례 때려 경찰에 입건됐습니다. 오늘(5일) 진주경찰서에 따르면, 40대 태권도장 관장 A씨는 아동복지법상 아동학대 혐의로 조사를 받고 있습니다</p>
+<p class="meta"><span class="count">4곳 보도</span><span>MBN · JTBC · KBS 외 1곳</span><span class="when">7시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229241" rel="noopener">&quot;이 XX새끼야&quot;…태권도 관장이 피날 정도로 머리 &#x27;퍽퍽&#x27;</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBDb0ZyMkl1VmZPZEVqYkdBcVhhWF9oaWFlN2NNOGtyN3Rja2FDYzRfNWw2UlJKTnpMcWJnLUFBRUpNdWhmV01NU0VQRUtzdEdYT1F6Nk85elI5emc?oc=5" rel="noopener">“휴대폰 썼다”며 초등학생 머리 내려친 태권도장 관장 입건</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBEUnZZQ2RRRHhFM3ppanFKNjUzZE55RUJWeVQwdWxBUlBRTmNHMEhGTlNLeENWZjNSQVo2eXhTWEVDQUFSS3J3TzJVOFl6SThkdXBnRGhsRlVkcDdVYlHSAWNBVV95cUxOaWFRQ0drbldWYWdfSC1XQzEydUZhNjNwck5hTzFtSS1SdXpSR1luaEp0MTRSYzVJb2pfWXd5UHFxMzFjZGdkQXdwbFZ4S0dwdGVPUmc1cGFMenpnQllLQ3ZRZGM?oc=5" rel="noopener">“차에서 휴대전화 썼다고”…초등생 머리 10차례 때린 태권도 관장 입건</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH202611052328001lJ" rel="noopener">내년 교황과 함께 서울 세계청년대회…100만 명 집결</a></h3>
+<p class="lead">내년 8월 서울에서 가톨릭 최대 규모 행사로 꼽히는 &#x27;세계청년대회&#x27; 본대회가 열립니다. 레오 14세 교황이 전 세계 청년들을 맞이하는데요. 서울월드컵경기장에서 개막 미사와 함께 시작됩니다. 이화영 기자입니다. [기자] &quot;저는 진심으로 여러분 한 사람 한 사람을 서울로 초대합니다.</p>
+<p class="meta"><span class="count">3곳 보도</span><span>연합뉴스TV · SBS · MBN</span><span class="when">53분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832519&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">2027 서울 세계청년대회, 교황과 청년 50만 명 참석…상암·서울공항 주무대</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229237" rel="noopener">내년 &#x27;국빈 방문&#x27; 교황, 월드컵경기장서 환영 행사…방북 이뤄질까</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326683" rel="noopener">중수청, 선관위 특검 파견요청에 &quot;1명만&quot;...이틀째 압수수색</a></h3>
+<p class="lead">선관위 특검이 &#x27;투표록 위·변조 의혹&#x27;과 관련해 이틀째 압수수색을 이어가는 가운데, 중앙선관위 선거정책실을 중심으로 관련 자료 확보에 나선 것으로 파악됐습니다. JTBC 취재 결과, 특검은 오늘(5일) 중앙선관위</p>
+<p class="meta"><span class="count">3곳 보도</span><span>MBN · JTBC · SBS</span><span class="when">6시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00009&amp;news_seq_no=5229264" rel="noopener">선관위 특검, 10명 파견 요청했지만…중수청 &quot;내부 사정으로 1명만&quot;</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832790&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">선관위 특검, 10명 파견 요청…중수청 &quot;1명 가능&quot; 회신</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008833075&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">제천 단독 주택서 화재…70대 남성 사망</a></h3>
+<p class="meta"><span class="count">2곳 보도</span><span>SBS · YTN</span><span class="when">55분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE9YbWlMc3BmNkY2bzI4cFJZd1VnVHJIZDVCbzRfdHhVU2pTV05FbFJPZjhFMjNoY1BQcU9hMmp2eHhwMzNab2oyNXpuZUtBaWVySnoyYzByaVNfZ1c5ckE?oc=5" rel="noopener">제천 단독주택 화재...70대 남성 숨진 채 발견</a></li></ul></details>
+</article><p class="next"><a href="#world">다음: 국제 ›</a></p></section>
+<section id="world" aria-labelledby="h-world"><h2 id="h-world">국제</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326689" rel="noopener">텍사스에 수천억 쏟은 머스크 &#x27;날벼락&#x27;…사업까지 비상</a></h3>
+<p class="lead">트럼프 대통령은 우리 돈 수천억원을 쏟아부으면서 텍사스 사수에 사활을 걸었지만 텍사스의 정치권력은 민주당으로 넘어갔습니다. 이번 선거의 가장 큰 이변으로 불리기도 합니다. 그 이변의 현장으로 갑니다. 텍사</p>
+<p class="meta"><span class="count">5곳 보도</span><span>SBS · MBC · 채널A 외 2곳</span><span class="when">21분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (4)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832889&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&quot;중간선거 최대 패배자는 머스크&quot;…6천억 원 &#x27;헛돈&#x27; 썼다</a></li><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1jX1dWUHZuUjl4NHAtd2tSQmxvZzdtWHJ6eVVhRkZ6V2QyWFA2T3lCZ21rVkdSV25jalFrR1hNak91OTFqUHhVeUlHWnlLQnI4bnZSRmYwaVQwOHpldDNZZTJKUjBwNXQ4a3JMTW1zWEg5dktoR1gyTtIBeEFVX3lxTE5wbWxVWmVKZ0lkSTVILWVrWXAwVnFiUWo1NGtwSUhuSzV5RzRtWW9yUThkNGdtdzJzVWNVVW5FUnVWaEpqOFE5Y2U4U1FxOXUzOTh6b2RXME9XS2wxRWxvTk9aWWZzU0pIdnRHUjB0SjAyVWZLV2J6aA?oc=5" rel="noopener">&quot;6천억 쏟아붓고도 완패&quot;‥머스크·밴스, 선거 참패 후폭풍</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE44UHZ6c0VpUkVmMDJoZHBWZjg1ZUxwQTBfQTJDYmNvekJlYzI1MDVOYXc5ODhRQWp4NTRuUTdMVndBZXN0RmZSYng3QVo3czlsRGx2NG90WFBjWENLWlHSAWNBVV95cUxNbmg5RGo3VTZYbE93NWZGN1JVdjBfNlhyZHZ0REpfc0haSjhYd1B0dlFPWlZZNkUzbXZPeWhXYmRYeHpMNEZJU1M2dDdramdlUzF5cXdxdXB4bWUydnNLdVdZcHc?oc=5" rel="noopener">6천억 쏟아부은 머스크…“이번 선거 최대 패배자”</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE44M243bE5ob0dMRWVTWnljNnJ1Z3dZcTg0cjl6UldvWWdZMVlnejNiME1qejZCV2VPQnBaTGpKMFd3TFFMVkxDTmxtVWg5Q0c1VnJLTm43Sm9YcTQ?oc=5" rel="noopener">‘공화당 참패’ 최대 피해자는 머스크?…씁쓸한 농담만</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326678" rel="noopener">공화당이 &quot;헤그세스 탄핵&quot;…&#x27;대통령에 번질라&#x27; 전전긍긍</a></h3>
+<p class="lead">공화당 안에서는 &#x27;국방장관 탄핵&#x27;을 추진하겠다는 목소리까지 나왔습니다. 헤그세스 장관이 스스로 물러나지 않으면, 이란 전쟁 책임을 물어 당장 다음 주 탄핵 소추안을 표결하겠다는 것인데 헤그세스 장관은 트럼</p>
+<p class="meta"><span class="count">5곳 보도</span><span>TV조선 · 채널A · JTBC 외 2곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (4)</summary><ul><li><span class="o">TV조선</span><a href="https://news.tvchosun.com/site/data/html_dir/2026/11/05/2026110590258.html" rel="noopener">트럼프 &quot;탄핵 땐 민주당 파멸&quot;…헤그세스 경질 요구도 &#x27;일축&#x27;</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBLaEhEalRBWjByUUw0Zm5TTEIyQ1N3dEpINmtZZEpBbGdJZlZ1dWxBa0xObVU2aVNDN0RSck9RaHdZbXp4TmVuSThnSUJZWHluZzBwNzR6a3ViNzZfMFHSAWNBVV95cUxQbUV5cGtvQlVZb19NMFBxeW1aTG9CVmRVTlU0Y1h3VlBENEdKUUVDWHNjWEtMUnE2bXRhbWQzNFhsQkt1NDRjbmZVYUNxTDBYUk9NTUhZaGwwdlZWb3Z3WnhoOFU?oc=5" rel="noopener">“美 하원, 헤그세스 국방장관 탄핵안 다음 주 표결”</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00008&amp;news_seq_no=5229291" rel="noopener">트럼프 &quot;전쟁이 패인&quot;이라면서 헤그세스 안 바꿔…전쟁 폭주 우려</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831711&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">이란 전쟁 책임론 확산?…&quot;헤그세스 국방장관 교체 검토&quot;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/AKR20261105194511BAU" rel="noopener">유럽 냉장고 해킹 이어…항공기 폭탄 신고 잇따라</a></h3>
+<p class="lead">전날 폭탄 위협을 받고 바르샤바에 비상착륙한 스칸디나비아항공 여객기[로이터=연합뉴스 제공][로이터=연합뉴스 제공] 유럽 상공을 비행하던 여객기에서 폭발물 신고가 또 잇달아 접수되면서 전투기까지 출격하는 등 혼란이 계속되고 있습니다.</p>
+<p class="meta"><span class="count">5곳 보도</span><span>연합뉴스TV · MBC · MBN 외 2곳</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (4)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5BXzNaWGt6UG9mV01KZFdxU0V2Vm9lS3hxQ2hHVGhqclYwenZ1TzV0Uk44VnJjN2hTR1paMlcyYXBIeHkwUW1nMjcwbTM2XzdTVU9ZUDFka2laNVV5T1M1VW5fM1plU1lwRmpnbE0wSGdIR2RMaGtRQtIBeEFVX3lxTFBmM25md1BPUk1vOGhPRk9RTjFUcGJmTUhtV2lCYXBzcm1kSS13NGpQM1lRZnpVdHJDZ2hWQ2lMMVB3S3AwbmVmZFl2UHpYWktMUmNuSkRLVWhJTWxycEZkS1NnUHJHX2lnaVJOdXlIa2o4MlRiUFlqTg?oc=5" rel="noopener">마트 이어 혈액원·은행까지‥유럽 해킹 공포에 촉각</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00008&amp;news_seq_no=5229151" rel="noopener">냉장고 이어 혈액 보관시설까지…프랑스, &#x27;초고온&#x27; 해킹에 비상</a></li><li><span class="o">채널A</span><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE5nQzJHVHg5QUcxZjNheXdaQ3pYNWtDRVZWLWpaSUdTNUVKcjUwck53Qzhxc0pDNkFYM1lZNEdCMEk3U1EtRjFmbml5c0UzX1NWV0dKQ3o0b2s5NWctVXIzTDYySdIBY0FVX3lxTE5nQzJHVHg5QUcxZjNheXdaQ3pYNWtDRVZWLWpaSUdTNUVKcjUwck53Qzhxc0pDNkFYM1lZNEdCMEk3U1EtRjFmbml5c0UzX1NWV0dKQ3o0b2s5NWctVXIzTDYySQ?oc=5" rel="noopener">혈액보관소 온도 -30도→110도…프랑스 혈액원도 사이버 공격</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831319&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">냉장고 이어 프랑스 혈액원도 &#x27;초고온&#x27; 해킹</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326735" rel="noopener">프랑스 노조·학생, 다시 거리로 나서…&quot;전국 집회 260건&quot;</a></h3>
+<p class="lead">프랑스 주요 노동조합과 학생 단체가 열악한 공공부문 서비스와 높은 물가에 항의하기 위해 다시 거리로 나섰습니다. 현지시간 5일 AP, AFP, 로이터 통신에 따르면 생활비 상승에 항의하고 임금 인상을 요구하는 노조</p>
+<p class="meta"><span class="count">3곳 보도</span><span>JTBC · YTN · 연합뉴스TV</span><span class="when">25분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1yZjJ0OFZEemtaZEZ3TTE2bzZvUndTMFBpRjRyc1E3ZzdaWEswRWkzbDdvcGlnRFZyZWpxRHJFY0FZdFBlLUM2ck5GNUdkNkRYN0pYU1IwbE5Mek9ab0E?oc=5" rel="noopener">프랑스 노조·학생, 다시 거리로...수십만 명 참여 예상</a></li><li><span class="o">연합뉴스TV</span><a href="https://www.yonhapnewstv.co.kr/news/AKR20261105204943Ynf" rel="noopener">프랑스 노조·학생, 다시 거리로…&quot;전국 집회 260건&quot;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832647&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">젤렌스키, 미국 민주당 압승에 &quot;군사 지원 확대&quot; 기대</a></h3>
+<p class="meta"><span class="count">2곳 보도</span><span>YTN · SBS</span><span class="when">2시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1qQ1RmbFNkWWM5eDNkaXVxUkgzQ01URENnS04yWWF6SzBnQlUyaHVQeTZQR2VITUFJMDNYTTdTV0xjY2ltWUwyZ29GeHNjRU91N1YxYjZ3VnAyUkhKR2c?oc=5" rel="noopener">젤렌스키 &quot;권력 균형에 군사지원 확대&quot;...우크라전 &#x27;안갯속&#x27;</a></li></ul></details>
+</article><p class="next"><a href="#life">다음: 생활·문화 ›</a></p></section>
+<section id="life" aria-labelledby="h-life"><h2 id="h-life">생활·문화</h2><article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105201610WvV" rel="noopener">한지, 유네스코 등재 권고…&quot;일상·문화 중요 역할&quot;</a></h3>
+<p class="lead">우리의 삶과 오랜 세월을 함께해 온 전통 종이 &#x27;한지&#x27;가 세계인의 유산으로 거듭날 채비를 마쳤습니다. 유네스코 평가기구가 한지 제작 기술과 문화에 대해 &#x27;등재 권고&#x27; 판정을 내리면서, 최종 등재 가능성이 매우 높아졌습니다. 김태욱 기자입니다. [기자] &quot;우리는 염원합니다.</p>
+<p class="meta"><span class="count">2곳 보도</span><span>연합뉴스TV · SBS</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832360&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">천년의 기술 담긴 한지…유네스코 인류무형유산 등재 권고</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831281&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">방탄소년단, 또 &#x27;최초&#x27; 썼다…이탈리아서 &#x27;플래티넘&#x27; 인증</a></h3>
+<p class="lead">방탄소년단이 이탈리아 음악산업협회에서 K팝 가수 최초로 &#x27;플래티넘&#x27; 인증을 받았습니다.지난 3월 발매한 앨범 &#x27;아리랑…</p>
+<p class="meta"><span class="count">2곳 보도</span><span>SBS · MBC</span><span class="when">16시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE5DbzMxd1I5SWtoSlJBT2lJRGZ6NVB3dENZUlAxNWpvZjAxZ3lsSXBYbkx6azRQNjB5MGlsT0NUcV8wRDdHVlhPWkJteFBHUmo3UzF2bkxDalZ5cjk1TlRQekk3SURBYmY3XzlDandGVlZYeXowWW1xcU1R0gF6QVVfeXFMT1FzSnhEN2ctM0VpaWpjTXdMMmloRnBPd0ZhNVQzcTBXYTJ3djMwZDMwZzJtdnN4dnVjZkZRaU84bWVNWVRLb2kyU0xfNHJrNmlvcTdYRWxTVFpnQnhBazlXMmNod1BGdld3Y2pfTmRSOHJZdnRZcUNad0E?oc=5" rel="noopener">BTS &#x27;아리랑&#x27;, 이탈리아 &#x27;플래티넘&#x27; 인증</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831278&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">리센느 &#x27;위드&#x27; 디즈니…&#x27;헥스: 마녀왕국&#x27; 엔딩곡 선정</a></h3>
+<p class="lead">그제 신곡 &#x27;위드&#x27;로 컴백한 리센느가 디즈니 영화와 협업을 하게 됐습니다.&#x27;위드&#x27;가 오는 25일 개봉하는 영화 &amp;#…</p>
+<p class="meta"><span class="count">2곳 보도</span><span>SBS · KBS</span><span class="when">16시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE12ZzdVWlUwaG5qMVhYREZxN0ljY2pwRU9rRjdiMXRabXNYb1BhbmhMQjZzUDhVeXQ1Q25ISFVZSFNKYTFDdXZUZHRNUEZ5eW53cjVjaWNtaVlYZEk?oc=5" rel="noopener">디즈니 영화에 리센느 노래…K팝 최초</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008833063&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&#x27;청개구리&#x27; 언차일드, &#x27;독개구리&#x27;로 컴백…&quot;생동감 가득해&quot;</a></h3>
+<p class="meta"><span>SBS</span><span class="when">1시간 전</span></p>
+</article>
+<article class="story">
+<h3><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008832520&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">밤사이 중부 비…&#x27;강한 바람&#x27; 주의</a></h3>
+<p class="lead">밤사이 중부 지방은 비가 한 차례 더 지나겠는데요.양은 1mm 정도로 매우 적겠습니다.비구름 뒤로는 북서쪽에서 찬 공기가 내려와 날이 부쩍 추워…</p>
+<p class="meta"><span>SBS</span><span class="when">7시간 전</span></p>
+</article><p class="next"><a href="#ent">다음: 연예 ›</a></p></section>
+<section id="ent" aria-labelledby="h-ent"><h2 id="h-ent">연예</h2><article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326565" rel="noopener">서인영, 12월 26일 재혼 &quot;스몰 웨딩으로 준비&quot;</a></h3>
+<p class="lead">가수 서인영(42)이 12월 26일 결혼한다. 4일 유튜브 채널 &#x27;개과천선 서인영&#x27;에는 &#x27;독사 아빠한테 혼쭐나며 가문의 김치 담그는 서인영&#x27;이라는 제목의 영상에서 서인영은 결혼 날짜와 예식 계획을 직접 밝혔다.</p>
+<p class="meta"><span class="count">2곳 보도</span><span>SBS · JTBC</span><span class="when">14시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831629&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">서인영, 12월 26일 6살 연상 사업가와 재혼…&quot;교회서 스몰 웨딩&quot;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326734" rel="noopener">이규한 “&#x27;오만추&#x27;서 솔비 선택 안 한 이유? 불편해질까봐”</a></h3>
+<p class="lead">가수 솔비와 결혼을 준비 중인 배우 이규한이 과거 한 연애 예능프로그램에서 재회한 솔비를 최종선택하지 못한 이유를 밝혔다. 5일 유튜브 채널 &#x27;솔비이즈백&#x27;에는 &#x27;솔비 규한의 첫 먹방 그리고 예비 신랑의 신개념 플러</p>
+<p class="meta"><span>JTBC</span><span class="when">1시간 전</span></p>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326731" rel="noopener">성시경, &#x27;누나&#x27; 하지원에 핑크빛 직진? &quot;나 같은 동생 두면 좋아&quot;</a></h3>
+<p class="lead">배우 하지원과 가수 셩시경이 오묘한 핑크빛을 형성했다. 5일 유튜브 채널 &#x27;26학번 지원이요&#x27;에는 &#x27;살면서 이런 사람 한명쯤 필요하지 않나요? 지원이가 해림이가 되어 성시경과 나눈 진솔 토크&#x27;라는 제목의 영상이 업</p>
+<p class="meta"><span>JTBC</span><span class="when">1시간 전</span></p>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326729" rel="noopener">차예련, &#x27;학폭&#x27; 반박에도 줄폭로 “미용실서 드라이기 뺏어”</a></h3>
+<p class="lead">배우 차예련이 학교폭력 의혹을 적극 반박했으나 그를 둘러싼 폭로가 계속되면서 혼란이 가중되고 있다. 5일 각종 SNS와 온라인 커뮤니티에는 차예련과 관련한 여러 과거 목격담이 올라왔다. 관련 주장들은 사실 여부가</p>
+<p class="meta"><span>JTBC</span><span class="when">2시간 전</span></p>
+</article><p class="next"><a href="#sports">다음: 스포츠 ›</a></p></section>
+<section id="sports" aria-labelledby="h-sports"><h2 id="h-sports">스포츠</h2><article class="story">
+<h3><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00008&amp;news_seq_no=5229322" rel="noopener">호날두, 결국 대표팀 은퇴…마지막은 씁쓸한 벤치 신세</a></h3>
+<p class="lead">포르투갈 축구의 전설 크리스티아누 호날두(41·알나스르)가 국가대표 은퇴를 선언했습니다.대표팀 소집 도중 무단으로 팀을 이탈해 파문을 일으킨 지 한 달여 만입니다.호날두는 오늘(5일) 인스타그램을 통해 대표팀에서 은퇴한다고 밝혔습니다.</p>
+<p class="meta"><span class="count">4곳 보도</span><span>SBS · YTN · KBS 외 1곳</span><span class="when">1시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008833071&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">호날두 &quot;7번 유니폼 넘겨줄 때&quot;…포르투갈 축구대표팀 은퇴</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE1kN05DV0E1dW8taTVocm9zX0NtOXBiNUZOODh3el9DazdDUnNEX3FPQVBJS01xa1ZtTTFBd3BDSWIyMVh3ckJ4REJJaXVXdWZVUnp1cmlaTnFnVUVPeGc?oc=5" rel="noopener">&#x27;대표팀 이탈 파문&#x27; 호날두, 결국 포르투갈 축구대표서 은퇴</a></li><li><span class="o">KBS</span><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE5GZEtwOThkYURoZzNVbUFFQnhsX0EzemFMaTFtakNlTDg3VnZrc1hsR25SX0dXNVFsdkl0MTZvc3JYcDlSaFBhMUNvT3NzSDhjVmJsMVgxQ0ZsNUU?oc=5" rel="noopener">‘대표팀 이탈’ 파문 호날두, 결국 포르투갈 대표팀 은퇴 선언</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH202611051853140D9" rel="noopener">北 태권도 유네스코 등재 눈앞…흔들리는 종주국 위상</a></h3>
+<p class="lead">태권도 종주국인 우리나라보다 북한이 먼저 태권도의 유네스코 인류무형문화유산 등재 권고를 받았습니다. 씨름처럼 남북 공동 등재가 쉽지 않아 종주국으로서의 늑장 대응에 대한 비판의 목소리가 나옵니다. 강지수 기자입니다. [기자] 태권도 종주국이자 세계화를 주도한 우리나라.</p>
+<p class="meta"><span class="count">4곳 보도</span><span>MBC · YTN · MBN 외 1곳</span><span class="when">4시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (3)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE50SVV2elVVQ21VejFmTXZCeHBHSUFrWnlSUElxUm1XMUd1UlNMMlRkWGdEX0EyNXVOejN5TllGX01BMDVVYjJpN0RCVW1vYXJTSmdDMmxhTVcwbWUyRWFpczE0Q2x2TTg3M0RocnNoNDhhZHpMUjFTV9IBeEFVX3lxTE5sMklQSDJPYmJPSlRBTEJhRGNwbEh1Z2RrNUcwYzdleGhOUHpCVl8yd0w4Q2ZHbGdKU0djcHM5MmxEVE9RekgwSHNSYi1qOWpLWVZxN19sUVRmLTUyUXU3Z29HN1hvNjdZTnJkazBUcl9XRUN6Mmd0dw?oc=5" rel="noopener">&quot;태권도는 북한 전통무술?&quot; 유네스코 단독 등재‥종주국인 우리는?</a></li><li><span class="o">YTN</span><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE9uRlVpUmY0R3AxVGJrS1gxcEdpbk1xNS1UczloNE9GbHE1QjY0bWNzbTZ1UE5lRVl5Ymp2QldZZmZYODNWWks1bGEzaW9IMmFjR3JjNFdwU0VweXBTYjJJcVI1S0tXd2NNX1QtSWZlcw?oc=5" rel="noopener">한지, 인류무형유산 눈앞...태권도는 북한 단독 등재 유력</a></li><li><span class="o">MBN</span><a href="https://www.mbn.co.kr/pages/news/newsView.php?category=mbn00011&amp;news_seq_no=5229315" rel="noopener">결국 북한 유산이 된 태권도…유네스코 &#x27;등재&#x27; 권고 받았다</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://news.jtbc.co.kr/article/NB12326541" rel="noopener">12회 연장 혈투 끝에…삼성, kt 꺾고 &#x27;1승 1패&#x27;</a></h3>
+<p class="lead">프로야구 한국시리즈 2차전에서 삼성이 kt를 꺾고 1승 1패를 기록하며 승부를 원점으로 돌렸습니다. 삼성은 어제(4일) 수원 케이티위즈파크에서 열린 경기에서 연장 12회 접전 끝에 3대 2로 승리했습니다. 양 팀</p>
+<p class="meta"><span class="count">3곳 보도</span><span>JTBC · MBC · SBS</span><span class="when">15시간 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (2)</summary><ul><li><span class="o">MBC</span><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE1vdGZ6NFdmM3djbDMwbHIxRGk4UzE1R2gyRUhNd05xNVR3UmQ5bTlFM3hHNW1zd1F6TzV6dkhfQjNmZjk0dUlLQ216Um9oVVhYZzJzV0FmQ2d4MnVfZjBzUV9zdDFsLU9jdmV4SG1Dd19PU2pOdlZJaWRR0gF6QVVfeXFMTThQV1BSa2VYX1VvQXdMbEg1WFg3bWt0cXIwbzZveVhsMXNSTVJWY3Y4aW0wUE9VT1h2WGV4bllUeU9qN2VpX1dDaE5EVm4xRm5tckdIYXUzampody1zUzJMNVhFU2Z6VVR3by1rQUNsc3JFU1BRZmxtd0E?oc=5" rel="noopener">연장 혈투 끝 2차전 삼성 승리‥1승 1패 원점</a></li><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831282&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">&#x27;디아즈 결승 득점&#x27; 삼성, KT 꺾고 &#x27;승부 원점&#x27;</a></li></ul></details>
+</article>
+<article class="story">
+<h3><a href="https://www.yonhapnewstv.co.kr/news/MYH20261105233129hSz" rel="noopener">손흥민, MLS 유니폼 판매 2년 연속 2위</a></h3>
+<p class="lead">미국 프로축구 로스앤젤레스FC에서 뛰는 국가대표팀 주장 손흥민이 올 시즌 유니폼 판매 순위 2위에 올랐습니다. 미국 메이저리그사커 사무국이 공개한 올 시즌 유니폼 판매 순위 톱10에서 메시가 1위, 손흥민이 2위를 차지했습니다.</p>
+<p class="meta"><span class="count">2곳 보도</span><span>연합뉴스TV · SBS</span><span class="when">49분 전</span></p>
+<details><summary>다른 곳은 이렇게 썼어요 (1)</summary><ul><li><span class="o">SBS</span><a href="https://news.sbs.co.kr/news/endPage.do?news_id=N1008831377&amp;plink=RSSLINK&amp;cooper=RSSREADER" rel="noopener">손흥민, 메시에 이어 MLS 유니폼 판매량 &#x27;2년 연속 2위&#x27;</a></li></ul></details>
+</article><p class="next"><a href="#top">처음으로: 오늘의 주요 뉴스 ›</a></p></section>
+<footer>
+<h2>지난 아침 뉴스</h2>
+<div class="days"><a href="../">오늘</a><a href="2026-11-06.html" aria-current="page">11/6 (금)</a><a href="2026-11-05.html">11/5 (목)</a><a href="2026-11-04.html">11/4 (수)</a><a href="2026-11-03.html">11/3 (화)</a><a href="2026-11-02.html">11/2 (월)</a><a href="2026-11-01.html">11/1 (일)</a><a href="2026-10-31.html">10/31 (토)</a><a href="2026-10-30.html">10/30 (금)</a><a href="2026-10-29.html">10/29 (목)</a><a href="2026-10-28.html">10/28 (수)</a><a href="2026-10-27.html">10/27 (화)</a></div>
+<p>‘N곳 보도’는 같은 사건을 다룬 방송사 수예요. 섹션마다 많이 보도된 순서로 놓았어요. 같은 사건인지는 제목의 뜻과 글자를 함께 비교해서 정해요.</p>
+<p>요약은 각 방송사가 RSS에 실은 첫 문장이에요. KBS·MBC·YTN·채널A는 공개 RSS가 없어 구글 뉴스 검색으로 받아서, 그 기사만 있는 사건은 요약이 없어요.</p>
+<p>출처: KBS · MBC · YTN · 채널A · SBS · JTBC · 연합뉴스TV · MBN · TV조선</p>
+<p>RSS 앱으로도 보려면 <a href="../feeds.opml">출처 목록(OPML)</a>을 가져가세요.</p>
+</footer>
+</div>
+<script>
+(function(){
+  var links = document.querySelectorAll('nav.jump a');
+  var secs = document.querySelectorAll('.wrap > section');
+  var head = document.querySelector('.wrap > header');
+  if (!links.length || !secs.length) return;
+  document.body.classList.add('tabs');
+  function show(id, jump){
+    var hit = null;
+    for (var i = 0; i < secs.length; i++) if (secs[i].id === id) hit = secs[i];
+    if (!hit) { hit = secs[0]; jump = false; }
+    for (var k = 0; k < secs.length; k++) secs[k].classList.toggle('on', secs[k] === hit);
+    for (var j = 0; j < links.length; j++){
+      var a = links[j];
+      if (a.getAttribute('href') === '#' + hit.id){
+        a.setAttribute('aria-current', 'page');
+        a.parentNode.scrollLeft = a.offsetLeft - (a.parentNode.clientWidth - a.offsetWidth) / 2;
+      } else a.removeAttribute('aria-current');
+    }
+    // 아래로 내려가 있었으면 새 섹션의 첫 기사가 보이도록 버튼 줄 바로 아래로 올린다
+    var top = head.getBoundingClientRect().bottom + window.pageYOffset;
+    if (jump || window.pageYOffset > top) window.scrollTo(0, Math.min(window.pageYOffset, top));
+  }
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1), true); });
+  show(location.hash.slice(1), false);
+})();
+</script>
+</body>
+</html>
